@@ -3,7 +3,7 @@
 
 import { Inter, Bebas_Neue } from 'next/font/google';
 import { usePathname } from 'next/navigation';
-import { Header, getLayoutConfig, images, Footer } from '@/types';
+import { Header, getLayoutConfig, images, Footer, ScrollToTop } from '@/types';
 import './globals.css';
 
 const inter = Inter({
@@ -56,6 +56,7 @@ export default function RootLayout({
             <div className="page-transition">{children}</div>
           </main>
           <Footer />
+          <ScrollToTop />
           {/* {layoutConfig.footer === 'footer1' ? <Footer1 /> : <Footer2 />} */}
         </div>
       </body>

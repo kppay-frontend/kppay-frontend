@@ -1397,47 +1397,6 @@ export default function TermsAndConditions() {
                   understood, and agreed to these Terms and Conditions of Use.
                 </p>
               </section>
-
-              {/* Contact Section */}
-              <section className="mt-12 pt-8 border-t border-border-secondary">
-                <div className="bg-gradient-to-br from-brand-primary/5 to-brand-accent/5 rounded-lg p-8">
-                  <h3 className="text-2xl font-semibold text-text-primary mb-4">
-                    Need Help?
-                  </h3>
-                  <p className="text-text-secondary mb-6">
-                    If you have any questions about these Terms and Conditions,
-                    please contact us:
-                  </p>
-                  <div className="grid md:grid-cols-2 gap-4 text-sm">
-                    <div className="bg-white rounded-lg p-4">
-                      <p className="font-semibold text-text-primary mb-2">
-                        Email
-                      </p>
-                      <a
-                        href="mailto:kppay@k-polygone.com"
-                        className="text-brand-primary hover:underline"
-                      >
-                        kppay@k-polygone.com
-                      </a>
-                    </div>
-                    <div className="bg-white rounded-lg p-4">
-                      <p className="font-semibold text-text-primary mb-2">
-                        Phone
-                      </p>
-                      <p className="text-text-secondary">+228 71 87 96 57</p>
-                      <p className="text-text-secondary">+229 67 11 41 41</p>
-                    </div>
-                    <div className="bg-white rounded-lg p-4 md:col-span-2">
-                      <p className="font-semibold text-text-primary mb-2">
-                        Address
-                      </p>
-                      <p className="text-text-secondary">
-                        Lomé (TOGO), rue Lotiyè, quartier Tokoin Doumassessé
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </section>
             </div>
           </main>
         </div>

@@ -19,6 +19,8 @@ export { default as SecurePaymentsSection } from '@/components/sections/SecurePa
 export { default as PartnersSection } from '@/components/sections/PartnersSection';
 export { default as ServicesSection } from '@/components/sections/ServicesSection';
 export { default as FAQSection } from '@/components/sections/FAQSection';
+export { default as ScrollToTop } from '@/components/ScrollToTop';
+export { default as AnimationProvider } from '@/components/AnimationProvider';
 
 // UI Components
 export { Button, buttonVariants } from '@/components/ui/Button';

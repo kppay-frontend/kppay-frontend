@@ -198,9 +198,10 @@
 }
 
 /**
- * Smooth scroll behavior
+ * Smooth scroll behavior - REMOVED from html to prevent animated scrolling on route changes
+ * Only applied to elements with .smooth-scroll class
  */
-html {
+.smooth-scroll {
   scroll-behavior: smooth;
 }
 

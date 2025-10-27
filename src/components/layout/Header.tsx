@@ -157,6 +157,21 @@ export default function Header({ variant = 'light' }: HeaderProps) {
         }
       `}</style>
 
+      {/* Backdrop blur when scrolled - only above header */}
+      {isScrolled && (
+        <div
+          className="fixed top-0 left-0 right-0 pointer-events-none z-40 transition-all duration-300"
+          style={{
+            height: isScrolled ? '72px' : '88px',
+            backdropFilter: 'blur(70px)',
+            WebkitBackdropFilter: 'blur(70px)',
+            maskImage: 'linear-gradient(to bottom, black 0%, transparent 100%)',
+            WebkitMaskImage:
+              'linear-gradient(to bottom, black 0%, transparent 100%)',
+          }}
+        />
+      )}
+
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled ? 'py-2' : 'py-4'
@@ -280,23 +295,28 @@ export default function Header({ variant = 'light' }: HeaderProps) {
                 </Button>
               </div>
 
-              <button
-                className="md:hidden"
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                aria-label="Toggle mobile menu"
-              >
-                {mobileMenuOpen ? (
-                  <X className="text-text-primary w-6 h-6" />
-                ) : (
-                  <Menu
-                    className={`w-6 h-6 ${
-                      useWhiteText
-                        ? 'text-text-main-white'
-                        : 'text-text-main-dark'
-                    }`}
-                  />
-                )}
-              </button>
+              <div className="md:hidden flex items-center gap-3">
+                {/* Language Switcher for Mobile */}
+                <LanguageSwitcher variant="mobile" />
+
+                <button
+                  className="md:hidden"
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                  aria-label="Toggle mobile menu"
+                >
+                  {mobileMenuOpen ? (
+                    <X className="text-text-primary w-6 h-6" />
+                  ) : (
+                    <Menu
+                      className={`w-6 h-6 ${
+                        useWhiteText
+                          ? 'text-text-main-white'
+                          : 'text-text-main-dark'
+                      }`}
+                    />
+                  )}
+                </button>
+              </div>
             </div>
           </div>
         </nav>
@@ -355,7 +375,7 @@ export default function Header({ variant = 'light' }: HeaderProps) {
                 {/* Payments Column */}
                 <div className="space-y-6">
                   <Link
-                    href="/payments/online"
+                    href="/payments/online-payments"
                     className="block group"
                     onClick={() => {
                       if (closeTimeout) clearTimeout(closeTimeout);
@@ -645,7 +665,7 @@ export default function Header({ variant = 'light' }: HeaderProps) {
       {/* Mobile Main Menu */}
       {mobileMenuOpen && !mobileSubMenuOpen && (
         <div className="md:hidden fixed inset-0 bg-surface-primary z-[40] animate-slide-up">
-          <div className="flex flex-col h-full justify-center px-6 pb-8 pt-24">
+          <div className="flex flex-col h-full justify-center px-6 pb-8 pt-36">
             <div className="flex flex-col gap-8 text-2xl px-6">
               <Link
                 href="/about"
@@ -685,11 +705,6 @@ export default function Header({ variant = 'light' }: HeaderProps) {
             </div>
 
             <div className="mt-auto flex flex-col gap-4 px-6">
-              {/* Language Switcher for Mobile */}
-              <div className="mb-4">
-                <LanguageSwitcher />
-              </div>
-
               <Button variant="outlined" size="md" href="/login" fullWidth>
                 Log in
               </Button>
@@ -736,7 +751,7 @@ export default function Header({ variant = 'light' }: HeaderProps) {
               <div className="space-y-6">
                 {[
                   {
-                    href: '/payments/online',
+                    href: '/payments/online-payments',
                     icon: CreditCard,
                     title: 'Online Payments',
                     desc: 'Accept payments online and in person',

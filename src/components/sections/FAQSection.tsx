@@ -15,39 +15,39 @@ const FAQSection: React.FC = () => {
 
   const faqs: FAQItem[] = [
     {
-      question: 'How does verification work with KPpay?',
+      question: 'How do I complete onboarding and account setup?',
       answer:
-        'You usually need to take some ID into the bank branch. KPPay is no different. We are a financial institution, so we need to know who is using our service, ask for you to verify your identity.',
+        'Simple registration with user details and quick verification. Most accounts are approved within minutes for immediate access.',
       isUppercase: true,
     },
     {
-      question: 'Is mobile money safe',
+      question: 'How does safety and tokenization work?',
       answer:
-        'Yes, mobile money is safe. We use industry-standard encryption and security measures to protect your transactions and personal information.',
+        'We use advanced tokenization and bank-level security protocols to protect your financial data and transactions at all times.',
       isUppercase: true,
     },
     {
-      question: 'What is your cancellation policy?',
+      question: 'Can I cancel or stop payments?',
       answer:
-        'Our cancellation policy allows you to cancel transactions within 24 hours of initiation. Please contact our support team for assistance.',
+        'Yes, you can cancel pending payments before processing. Once completed, you can request assistance through our support team.',
       isUppercase: true,
     },
     {
-      question: 'Can other info be added to an invoice?',
+      question: 'How long does document verification take?',
       answer:
-        'Yes, you can add custom information to your invoices including business details, tax information, and payment terms.',
+        "Document verification typically takes 2-3 business days. You'll receive updates on the status throughout the process.",
       isUppercase: true,
     },
     {
-      question: 'How does billing work?',
+      question: 'How do I manage my password securely?',
       answer:
-        'Billing is processed automatically based on your subscription plan. You will receive detailed invoices via email for all transactions.',
+        'Use strong, unique passwords and enable two-factor authentication. You can update your password anytime in account settings.',
       isUppercase: true,
     },
     {
-      question: 'How do I change my account email?',
+      question: "What's the difference between mobile and online banking?",
       answer:
-        'You can change your account email in the account settings section. Verification will be required for security purposes.',
+        'Both offer full functionality. Mobile app provides convenience on-the-go, while web platform offers comprehensive dashboard views.',
       isUppercase: false,
     },
   ];

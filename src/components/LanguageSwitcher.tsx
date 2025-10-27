@@ -29,10 +29,10 @@ declare global {
 }
 
 const languages = [
-  { code: 'en', name: 'English', flag: '🇬🇧' },
-  { code: 'fr', name: 'Français', flag: '🇫🇷' },
-  { code: 'pt', name: 'Português', flag: '🇵🇹' },
-  { code: 'ar', name: 'العربية', flag: '🇸🇦' },
+  { code: 'en', name: 'English', flag: '🇬🇧', abbr: 'EN' },
+  { code: 'fr', name: 'Français', flag: '🇫🇷', abbr: 'FR' },
+  { code: 'pt', name: 'Português', flag: '🇵🇹', abbr: 'PT' },
+  { code: 'ar', name: 'العربية', flag: '🇸🇦', abbr: 'AR' },
 ];
 
 // Get initial language from cookie outside component
@@ -53,7 +53,11 @@ function getInitialLanguage(): string {
   return 'en';
 }
 
-export default function LanguageSwitcher() {
+export default function LanguageSwitcher({
+  variant = 'desktop',
+}: {
+  variant?: 'desktop' | 'mobile';
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const [currentLang, setCurrentLang] = useState(getInitialLanguage);
 
@@ -99,6 +103,8 @@ export default function LanguageSwitcher() {
   const currentLanguage =
     languages.find((lang) => lang.code === currentLang) || languages[0];
 
+  const isMobile = variant === 'mobile';
+
   return (
     <>
       {/* Hidden Google Translate Element */}
@@ -108,14 +114,34 @@ export default function LanguageSwitcher() {
       <div className="relative">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-surface-secondary transition-colors"
+          className={`flex items-center gap-2 rounded-lg transition-colors ${
+            isMobile
+              ? 'px-2 py-2 bg-surface-primary border border-border-secondary'
+              : 'px-3 py-2 hover:bg-surface-secondary'
+          }`}
+          style={
+            isMobile
+              ? {
+                  boxShadow:
+                    'rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset',
+                }
+              : undefined
+          }
           aria-label="Change language"
         >
-          <Globe className="w-4 h-4 text-text-secondary" />
-          <span className="text-sm font-medium text-text-primary hidden sm:inline">
-            {currentLanguage.flag} {currentLanguage.name}
-          </span>
-          <ChevronDown className="w-4 h-4 text-gray-500" />
+          {isMobile ? (
+            <span className="text-xs font-semibold text-text-primary">
+              {currentLanguage.abbr}
+            </span>
+          ) : (
+            <>
+              <Globe className="w-4 h-4 text-text-secondary" />
+              <span className="text-sm font-medium text-text-primary hidden sm:inline">
+                {currentLanguage.flag} {currentLanguage.name}
+              </span>
+              <ChevronDown className="w-4 h-4 text-gray-500" />
+            </>
+          )}
         </button>
 
         {isOpen && (
@@ -124,7 +150,13 @@ export default function LanguageSwitcher() {
               className="fixed inset-0 z-40"
               onClick={() => setIsOpen(false)}
             />
-            <div className="absolute right-0 mt-2 w-48 bg-surface-primary border border-border-secondary rounded-lg shadow-lg z-50 overflow-hidden">
+            <div
+              className="absolute right-0 mt-2 w-48 bg-surface-primary border border-border-secondary rounded-lg overflow-hidden z-50"
+              style={{
+                boxShadow:
+                  'rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset',
+              }}
+            >
               {languages.map((lang) => (
                 <button
                   key={lang.code}
