@@ -36,7 +36,7 @@ export default function HeroSection() {
         <div className="absolute inset-0 z-[2] bg-gradient-to-b from-black/30 via-transparent to-black/20"></div>
 
         {/* Content Layer */}
-        <div className="relative z-10 container-padding h-full flex flex-col items-center justify-center">
+        <div className="relative z-10 container-padding pt-24 sm:pt-0 h-full flex flex-col items-center justify-center">
           <div className="text-center">
             {/* Heading */}
             <h1 className="heading-bebas text-[40px] md:text-[55px] lg:text-[60px] text-white leading-[1.05] mb-5 drop-shadow-2xl">

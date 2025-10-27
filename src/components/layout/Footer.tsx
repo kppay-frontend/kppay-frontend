@@ -1,16 +1,21 @@
 // src/components/layout/Footer.tsx
+'use client';
+
 import Link from 'next/link';
 import { Twitter, Facebook, Instagram, Linkedin } from 'lucide-react';
 import Image from 'next/image';
 import { images } from '@/types';
 
 export default function Footer2() {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="bg-surface-primary py-16">
       <div className="max-w-7xl mx-auto border-t border-border-secondary container-padding py-12">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
-          {/* Brand Column */}
-          <div className="md:col-span-1">
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-8">
+          {/* Brand Column - Full width on mobile */}
+          <div className="col-span-2 md:col-span-1">
             <Link href="/" className="flex items-center mb-4">
               <div className="relative w-[140px] h-[40px]">
                 <Image
@@ -182,11 +187,12 @@ export default function Footer2() {
             </ul>
           </div>
 
-          {/* Legal Column - Extended with more policies */}
+          {/* Legal Column */}
           <div>
             <h3 className="font-semibold text-text-secondary mb-4">Legal</h3>
             <ul className="space-y-3">
-              <li>
+              {/* Hide these 3 on mobile as they appear horizontally at bottom */}
+              <li className="hidden md:block">
                 <Link
                   href="/legal/terms"
                   className="text-text-main-dark hover:text-brand-primary transition-colors text-sm"
@@ -202,7 +208,7 @@ export default function Footer2() {
                   Intellectual Property Policy
                 </Link>
               </li>
-              <li>
+              <li className="hidden md:block">
                 <Link
                   href="/legal/cookie-policy"
                   className="text-text-main-dark hover:text-brand-primary transition-colors text-sm"
@@ -210,7 +216,7 @@ export default function Footer2() {
                   Cookie Policy
                 </Link>
               </li>
-              <li>
+              <li className="hidden md:block">
                 <Link
                   href="/legal/privacy"
                   className="text-text-main-dark hover:text-brand-primary transition-colors text-sm"
@@ -244,6 +250,38 @@ export default function Footer2() {
               </li>
             </ul>
           </div>
+        </div>
+
+        {/* Bottom Section - Legal links horizontal on mobile */}
+        <div className="border-t border-border-secondary pt-6 mt-6">
+          {/* Mobile Legal Links - Horizontal */}
+          <div className="md:hidden flex flex-wrap items-center justify-center gap-4 text-xs text-text-secondary mb-4">
+            <Link
+              href="/legal/terms"
+              className="hover:text-brand-primary transition-colors"
+            >
+              Terms and Condition
+            </Link>
+            <span>|</span>
+            <Link
+              href="/legal/privacy"
+              className="hover:text-brand-primary transition-colors"
+            >
+              Privacy Policy
+            </Link>
+            <span>|</span>
+            <Link
+              href="/legal/cookie-policy"
+              className="hover:text-brand-primary transition-colors"
+            >
+              Cookie Policy
+            </Link>
+          </div>
+
+          {/* Copyright - All views */}
+          <p className="text-center text-sm text-text-secondary">
+            © {currentYear} KPPAY. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
