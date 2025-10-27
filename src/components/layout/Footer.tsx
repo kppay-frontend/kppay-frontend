@@ -13,7 +13,7 @@ export default function Footer2() {
     <footer className="bg-surface-primary py-16">
       <div className="max-w-7xl mx-auto border-t border-border-secondary container-padding py-12">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
           {/* Brand Column - Full width on mobile */}
           <div className="col-span-2 md:col-span-1">
             <Link href="/" className="flex items-center mb-4">
@@ -186,76 +186,12 @@ export default function Footer2() {
               </li>
             </ul>
           </div>
-
-          {/* Legal Column */}
-          <div>
-            <h3 className="font-semibold text-text-secondary mb-4">Legal</h3>
-            <ul className="space-y-3">
-              {/* Hide these 3 on mobile as they appear horizontally at bottom */}
-              <li className="hidden md:block">
-                <Link
-                  href="/legal/terms"
-                  className="text-text-main-dark hover:text-brand-primary transition-colors text-sm"
-                >
-                  Terms and Condition
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/legal/intellectual-property"
-                  className="text-text-main-dark hover:text-brand-primary transition-colors text-sm"
-                >
-                  Intellectual Property Policy
-                </Link>
-              </li>
-              <li className="hidden md:block">
-                <Link
-                  href="/legal/cookie-policy"
-                  className="text-text-main-dark hover:text-brand-primary transition-colors text-sm"
-                >
-                  Cookie Policy
-                </Link>
-              </li>
-              <li className="hidden md:block">
-                <Link
-                  href="/legal/privacy"
-                  className="text-text-main-dark hover:text-brand-primary transition-colors text-sm"
-                >
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/legal/aml"
-                  className="text-text-main-dark hover:text-brand-primary transition-colors text-sm"
-                >
-                  Anti-Money Laundry Policy
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/legal/anti-corruption"
-                  className="text-text-main-dark hover:text-brand-primary transition-colors text-sm"
-                >
-                  Anti-Corruption Policy
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/legal/gift-policy"
-                  className="text-text-main-dark hover:text-brand-primary transition-colors text-sm"
-                >
-                  Gift Policy
-                </Link>
-              </li>
-            </ul>
-          </div>
         </div>
 
-        {/* Bottom Section - Legal links horizontal on mobile */}
+        {/* Bottom Section - Legal links horizontal on all screens */}
         <div className="border-t border-border-secondary pt-6 mt-6">
-          {/* Mobile Legal Links - Horizontal */}
-          <div className="md:hidden flex flex-wrap items-center justify-center gap-4 text-xs text-text-secondary mb-4">
+          {/* Legal Links - Horizontal on all screens */}
+          <div className="flex flex-wrap items-center justify-center gap-3 md:gap-4 text-xs md:text-sm text-text-secondary mb-4">
             <Link
               href="/legal/terms"
               className="hover:text-brand-primary transition-colors"
@@ -275,6 +211,34 @@ export default function Footer2() {
               className="hover:text-brand-primary transition-colors"
             >
               Cookie Policy
+            </Link>
+            <span>|</span>
+            <Link
+              href="/legal/intellectual-property"
+              className="hover:text-brand-primary transition-colors"
+            >
+              Intellectual Property Policy
+            </Link>
+            <span>|</span>
+            <Link
+              href="/legal/aml"
+              className="hover:text-brand-primary transition-colors"
+            >
+              Anti-Money Laundry Policy
+            </Link>
+            <span>|</span>
+            <Link
+              href="/legal/anti-corruption"
+              className="hover:text-brand-primary transition-colors"
+            >
+              Anti-Corruption Policy
+            </Link>
+            <span>|</span>
+            <Link
+              href="/legal/gift-policy"
+              className="hover:text-brand-primary transition-colors"
+            >
+              Gift Policy
             </Link>
           </div>
 

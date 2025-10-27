@@ -110,8 +110,8 @@ export default function LanguageSwitcher({
       {/* Hidden Google Translate Element */}
       <div id="google_translate_element" style={{ display: 'none' }}></div>
 
-      {/* Custom Language Switcher */}
-      <div className="relative">
+      {/* Custom Language Switcher - Add notranslate class to prevent translation */}
+      <div className="relative notranslate">
         <button
           onClick={() => setIsOpen(!isOpen)}
           className={`flex items-center gap-2 rounded-lg transition-colors ${

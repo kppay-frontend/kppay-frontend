@@ -8,17 +8,18 @@ export default function HeroSection() {
     <section className="relative -mt-24 overflow-hidden">
       {/* Hero Container */}
       <div className="relative h-[680px] sm:h-[700px] md:h-[750px] lg:h-[800px]">
-        {/* Main Dashboard Image - Background Layer */}
-        <div className="absolute inset-0">
+        {/* Dark overlay for better text contrast - covers entire hero section */}
+        <div className="absolute inset-0 bg-black/40 z-[0]"></div>
+
+        {/* Main Dashboard Image - Background Layer - Now smaller and starts below header */}
+        <div className="absolute top-[120px] left-0 right-0 bottom-[80px]">
           <Image
             src={images.hero.main}
             alt="EP Pay Platform Dashboard"
             fill
-            className="object-cover object-center"
+            className="object-contain object-center"
             priority
           />
-          {/* Dark overlay for better text contrast */}
-          <div className="absolute inset-0 bg-black/40"></div>
         </div>
 
         {/* Gradient Overlay - Blends with main image */}
@@ -39,14 +40,20 @@ export default function HeroSection() {
         <div className="relative z-10 container-padding pt-24 sm:pt-0 h-full flex flex-col items-center justify-center">
           <div className="text-center">
             {/* Heading */}
-            <h1 className="heading-bebas text-[40px] md:text-[55px] lg:text-[60px] text-white leading-[1.05] mb-5 drop-shadow-2xl">
+            <h1
+              className="heading-bebas text-[40px] md:text-[55px] lg:text-[60px] text-white leading-[1.05] mb-5"
+              style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.5)' }}
+            >
               THE SAFEST AND MOST RELIABLE
               <br />
               MONEY TRANSACTION PLATFORM
             </h1>
 
             {/* Description */}
-            <p className="text-[15px] md:text-[16px] text-white mb-8 leading-relaxed max-w-[420px] sm:max-w-[700px] mx-auto drop-shadow-lg">
+            <p
+              className="text-[15px] md:text-[16px] text-white mb-8 leading-relaxed max-w-[420px] sm:max-w-[700px] mx-auto"
+              style={{ textShadow: '0 2px 6px rgba(0, 0, 0, 0.4)' }}
+            >
               Send money globally, receive payments, deposit and request funds,
               invest
               <br className="hidden sm:block" />

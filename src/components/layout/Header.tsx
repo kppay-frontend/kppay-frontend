@@ -200,7 +200,7 @@ export default function Header({ variant = 'light' }: HeaderProps) {
                     src={
                       useWhiteText ? images.logos.white : images.logos.primary
                     }
-                    alt="EP PAY Logo"
+                    alt="KPPAY Logo"
                     fill
                     className="object-contain object-left"
                     priority
@@ -222,8 +222,8 @@ export default function Header({ variant = 'light' }: HeaderProps) {
 
                 <div
                   className="relative flex items-center gap-1"
-                  onMouseEnter={handleMegaMenuEnter}
-                  onMouseLeave={handleMegaMenuLeave}
+                  onMouseOver={handleMegaMenuEnter}
+                  onClick={handleMegaMenuLeave}
                 >
                   <span
                     className={`font-medium text-xs lg:text-sm transition-colors cursor-default ${
@@ -235,7 +235,7 @@ export default function Header({ variant = 'light' }: HeaderProps) {
                     Product
                   </span>
                   <ChevronDown
-                    className={`w-4 h-4 transition-all duration-300 ${
+                    className={`w-5 h-5 transition-all duration-300 ${
                       megaMenuOpen ? 'rotate-180' : ''
                     } ${
                       useWhiteText

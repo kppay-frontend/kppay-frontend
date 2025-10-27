@@ -101,7 +101,7 @@ export default function GiftPolicy() {
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="lg:hidden fixed bottom-6 right-6 bg-brand-primary text-white p-4 rounded-full shadow-xl z-30 hover:bg-brand-secondary transition-colors"
+            className="lg:hidden fixed bottom-6 left-6 bg-brand-primary text-white p-4 rounded-full shadow-xl z-30 hover:bg-brand-secondary transition-colors"
           >
             {sidebarOpen ? (
               <X className="w-6 h-6" />
