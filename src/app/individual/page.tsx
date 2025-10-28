@@ -1,14 +1,25 @@
-export default function IndividualPage() {
+import {
+  EnterpriseCTA,
+  IndividualPricingCards,
+  IndividualPricingHero,
+  ModernBankingFeatures,
+} from '@/types';
+
+export const metadata = {
+  title: 'Individual Pricing | KPPay - Banking Made Simple',
+  description:
+    'Experience modern banking designed for your personal financial needs. Affordable pricing plans with instant payments, smart savings, and more. Available in 50 countries.',
+};
+
+const IndividualPricingPage = () => {
   return (
-    <div className="min-h-screen py-20 px-6 lg:px-12">
-      <div className="max-w-7xl mx-auto">
-        <h1 className="text-4xl font-bold text-text-primary mb-6">
-          Individual
-        </h1>
-        <p className="text-lg text-text-secondary">
-          Choose the plan that is right for you.
-        </p>
-      </div>
-    </div>
+    <main className="page-transition">
+      <IndividualPricingHero />
+      <IndividualPricingCards />
+      <ModernBankingFeatures />
+      <EnterpriseCTA />
+    </main>
   );
-}
+};
+
+export default IndividualPricingPage;

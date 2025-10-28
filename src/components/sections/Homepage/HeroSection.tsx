@@ -15,7 +15,7 @@ export default function HeroSection() {
         <div className="absolute top-[120px] left-0 right-0 bottom-[80px]">
           <Image
             src={images.hero.main}
-            alt="EP Pay Platform Dashboard"
+            alt="KP Pay Platform Dashboard"
             fill
             className="object-contain object-center"
             priority
@@ -28,7 +28,7 @@ export default function HeroSection() {
             src={images.hero.gradient}
             alt=""
             fill
-            className="object-cover opacity-70 mix-blend-multiply"
+            className="object-cover opacity-90 mix-blend-multiply"
             priority
           />
         </div>
@@ -42,7 +42,7 @@ export default function HeroSection() {
             {/* Heading */}
             <h1
               className="heading-bebas text-[40px] md:text-[55px] lg:text-[60px] text-white leading-[1.05] mb-5"
-              style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.5)' }}
+              style={{ textShadow: '0 2px 6px rgba(0, 0, 0, 0.4)' }}
             >
               THE SAFEST AND MOST RELIABLE
               <br />

@@ -7,8 +7,8 @@ const CDN_BASE_URL =
 export const images = {
   // Logos
   logos: {
-    primary: `${CDN_BASE_URL}/image/upload/v1761386939/logo-primary_j3dggp.png`,
-    white: `${CDN_BASE_URL}/image/upload/v1761386938/logo-secondary_hyuj8m.png`,
+    primary: `${CDN_BASE_URL}/image/upload/v1761604811/kppaylogomain_raaxqp.png`,
+    white: `${CDN_BASE_URL}/image/upload/v1761604811/kppaylogomaintransparent_vzwak0.png`,
     icon: `${CDN_BASE_URL}/logos/logo-icon.svg`,
   },
 
@@ -24,6 +24,12 @@ export const images = {
     setup1: `${CDN_BASE_URL}/image/upload/v1761391731/image1_ohjudc.png`,
     setup2: `${CDN_BASE_URL}/image/upload/v1761391731/image2_dgiwhx.png`,
     setup3: `${CDN_BASE_URL}/image/upload/v1761391730/image3_mpgqkb.png`,
+  },
+
+  // about section images
+  about: {
+    discover: `${CDN_BASE_URL}/image/upload/v1761614255/discover_vli4sy.webp`,
+    hiring: `${CDN_BASE_URL}/image/upload/v1761614255/hiring_nv8i0o.webp`,
   },
 
   // Testimonials images

@@ -198,7 +198,7 @@ export default function Header({ variant = 'light' }: HeaderProps) {
                 >
                   <Image
                     src={
-                      useWhiteText ? images.logos.white : images.logos.primary
+                      useWhiteText ? images.logos.primary : images.logos.primary
                     }
                     alt="KPPAY Logo"
                     fill
@@ -268,7 +268,7 @@ export default function Header({ variant = 'light' }: HeaderProps) {
                 </Link>
 
                 <Link
-                  href="/resources"
+                  href="/resources-and-documentation"
                   className={`font-medium text-xs lg:text-sm transition-colors ${
                     useWhiteText
                       ? 'text-text-main-white hover:text-brand-primary'
@@ -696,7 +696,7 @@ export default function Header({ variant = 'light' }: HeaderProps) {
                 Enterprise
               </Link>
               <Link
-                href="/resources"
+                href="/resources-and-documentation"
                 className="font-medium text-text-primary hover:text-brand-primary transition-colors"
                 onClick={closeMobileMenu}
               >

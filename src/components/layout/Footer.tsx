@@ -98,6 +98,14 @@ export default function Footer2() {
                   Press
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/resources-and-documentation"
+                  className="text-text-main-dark hover:text-brand-primary transition-colors text-sm"
+                >
+                  Documentation
+                </Link>
+              </li>
             </ul>
           </div>
 

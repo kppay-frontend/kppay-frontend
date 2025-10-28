@@ -67,7 +67,7 @@ export const routeLayouts: Record<string, LayoutConfig> = {
   },
 
   // Pricing page
-  '/pricing': {
+  '/individual': {
     header: 'dark',
   },
 
@@ -77,7 +77,7 @@ export const routeLayouts: Record<string, LayoutConfig> = {
   },
 
   // Resources page
-  '/resources': {
+  '/resources-and-documentation': {
     header: 'dark',
   },
 };
