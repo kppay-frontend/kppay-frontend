@@ -24,8 +24,7 @@ export default function GlobalReachSection() {
         {/* Heading */}
         <div className="text-center mb-12 md:mb-16">
           <h2 className="heading-bebas text-[28px] md:text-[34px] lg:text-[40px] text-text-primary leading-[1.1] mb-3 max-w-[900px] mx-auto">
-            UNLOCKING FINANCIAL FREEDOM IN BENIN, EMPOWERING PAN-AFRICAN
-            OPPORTUNITIES.
+            UNLOCKING FINANCIAL FREEDOM, EMPOWERING PAN-AFRICAN OPPORTUNITIES.
           </h2>
           <p className="text-sm md:text-base text-text-secondary">
             Popular Countries Our Customers Send Money

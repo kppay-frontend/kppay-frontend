@@ -20,7 +20,9 @@ export const images = {
 
   // homepage section images
   homepage: {
-    map: `${CDN_BASE_URL}/image/upload/v1761388729/map_ngenmt.webp`,
+    // map: `${CDN_BASE_URL}/image/upload/v1761388729/map_ngenmt.webp`,
+    map: `${CDN_BASE_URL}/image/upload/v1761649870/MapChart_Map_w1loa7.png`,
+    // map2: `${CDN_BASE_URL}/image/upload/v1761650323/MapChart_Map_-_white_bg_j6zyrz.png`,
     setup1: `${CDN_BASE_URL}/image/upload/v1761391731/image1_ohjudc.png`,
     setup2: `${CDN_BASE_URL}/image/upload/v1761391731/image2_dgiwhx.png`,
     setup3: `${CDN_BASE_URL}/image/upload/v1761391730/image3_mpgqkb.png`,

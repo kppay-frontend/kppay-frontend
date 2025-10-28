@@ -24,7 +24,7 @@ export default function HomePage() {
       <GlobalReachSection />
 
       {/* Instant Setup - Light theme, Image Left */}
-      <FeatureShowcaseSection
+      {/* <FeatureShowcaseSection
         title="INSTANT SETUP"
         description="Merchants start receiving payment quickly without operational disruption for fast time to value"
         ctaText="Get started for free"
@@ -33,10 +33,10 @@ export default function HomePage() {
         imageAlt="Account setup interface"
         layout="image-right"
         theme="light"
-      />
+      /> */}
 
       {/* Send Money - Blue theme, Image Right */}
-      <FeatureShowcaseSection
+      {/* <FeatureShowcaseSection
         title="SEND AND RECEIVE MONEY FROM ACROSS THE WORLD"
         description="We share common trends and strategies for improving your rental income and making sure you stay in high demand."
         ctaText="Start a free trial"
@@ -45,10 +45,10 @@ export default function HomePage() {
         imageAlt="International money transfer interface"
         layout="image-left"
         theme="blue"
-      />
+      /> */}
 
       {/* Multiple Accounts - Light theme, Image Left */}
-      <FeatureShowcaseSection
+      {/* <FeatureShowcaseSection
         title="CREATE MULTIPLE ACCOUNTS IN DIFFERENT CURRENCIES"
         description="With lots of unique blocks, you can easily build a page without coding. Build your next landing page so quickly with Albino."
         ctaText="Get started for free"
@@ -57,10 +57,10 @@ export default function HomePage() {
         imageAlt="Multi-currency accounts"
         layout="image-right"
         theme="light"
-      />
+      /> */}
 
       {/* API Integration - Blue theme, Image Right */}
-      <FeatureShowcaseSection
+      {/* <FeatureShowcaseSection
         title="EASY API INTEGRATION"
         description="We share common trends and strategies for improving your rental income and making sure you stay in high demand."
         ctaText="Start a free trial"
@@ -69,10 +69,10 @@ export default function HomePage() {
         imageAlt="API integration interface"
         layout="image-left"
         theme="blue"
-      />
+      /> */}
 
       {/* Multiple Accounts - Light theme, Image Left */}
-      <FeatureShowcaseSection
+      {/* <FeatureShowcaseSection
         title="CREATE MULTIPLE ACCOUNTS IN DIFFERENT CURRENCIES"
         description="With lots of unique blocks, you can easily build a page without coding. Build your next landing page so quickly with Albino."
         ctaText="Get started for free"
@@ -81,10 +81,10 @@ export default function HomePage() {
         imageAlt="Multi-currency accounts"
         layout="image-right"
         theme="light"
-      />
+      /> */}
 
       {/* Bills Payment - Blue theme, Image Right */}
-      <FeatureShowcaseSection
+      {/* <FeatureShowcaseSection
         title="RECHARGE & PAY BILLS FROM ANY COUNTRY"
         description="We share common trends and strategies for improving your rental income and making sure you stay in high demand."
         ctaText="Start a free trial"
@@ -93,7 +93,7 @@ export default function HomePage() {
         imageAlt="Bills payment interface"
         layout="image-right"
         theme="blue"
-      />
+      /> */}
 
       {/* Why Choose Us */}
       <WhyChooseKPpay />

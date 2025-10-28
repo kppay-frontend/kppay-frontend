@@ -224,6 +224,7 @@ export default function Header({ variant = 'light' }: HeaderProps) {
                   className="relative flex items-center gap-1"
                   onMouseOver={handleMegaMenuEnter}
                   onClick={handleMegaMenuLeave}
+                  // onMouseOut={handleMegaMenuLeave}
                 >
                   <span
                     className={`font-medium text-xs lg:text-sm transition-colors cursor-default ${

@@ -40,14 +40,14 @@ export default function HeroSection() {
         <div className="relative z-10 container-padding pt-24 sm:pt-0 h-full flex flex-col items-center justify-center">
           <div className="text-center">
             {/* Heading */}
-            <h1 className="heading-bebas text-[40px] md:text-[55px] lg:text-[60px] text-white leading-[1.05] mb-5">
+            <h1 className="hero-heading">
               THE SAFEST AND MOST RELIABLE
               <br />
               MONEY TRANSACTION PLATFORM
             </h1>
 
             {/* Description */}
-            <p className="text-[15px] md:text-[16px] text-white mb-8 leading-relaxed max-w-[420px] sm:max-w-[700px] mx-auto">
+            <p className="hero-description">
               Send money globally, receive payments, deposit and request funds,
               invest
               <br className="hidden sm:block" />

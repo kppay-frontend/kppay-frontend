@@ -115,10 +115,17 @@
 }
 
 /* Normal/light Header style */
+.heading-inter-light {
+  font-family: var(--font-inter), sans-serif;
+  word-spacing: var(--heading-word-spacing);
+  /* letter-spacing: var(--heading-letter-spacing); */
+  text-transform: uppercase;
+}
+
 .heading-bebas-light {
   font-family: var(--font-bebas), sans-serif;
   word-spacing: var(--heading-word-spacing);
-  letter-spacing: var(--heading-letter-spacing);
+  /* letter-spacing: var(--heading-letter-spacing); */
   text-transform: uppercase;
 }
 
@@ -281,4 +288,52 @@ footer h6 {
   word-spacing: normal;
   letter-spacing: normal;
   text-transform: none;
+}
+
+/* Hero Heading Style */
+.hero-heading {
+  font-family: var(--font-bebas), sans-serif;
+  /* font-weight: 700; */
+  word-spacing: var(--heading-word-spacing);
+  letter-spacing: var(--heading-letter-spacing);
+  text-transform: uppercase;
+  font-size: 40px;
+  line-height: 1.05;
+  color: var(--color-text-main-white);
+  margin-bottom: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .hero-heading {
+    font-size: 55px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-heading {
+    font-size: 60px;
+  }
+}
+
+/* Hero Subtitle/Description Style */
+.hero-description {
+  font-size: 15px;
+  line-height: 1.625;
+  color: #ffffff;
+  margin-bottom: 2rem;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 640px) {
+  .hero-description {
+    max-width: 700px;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-description {
+    font-size: 16px;
+  }
 }

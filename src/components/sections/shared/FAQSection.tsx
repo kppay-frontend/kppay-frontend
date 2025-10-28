@@ -91,9 +91,9 @@ const FAQSection: React.FC = () => {
                   className="w-full flex items-center justify-between p-4 sm:p-5 text-left rounded-lg"
                 >
                   <span
-                    className={`text-sm sm:text-base text-text-main-dark ${
+                    className={`text-sm sm:text-md md:text-lg text-text-main-dark ${
                       faq.isUppercase
-                        ? 'heading-bebas-light'
+                        ? 'heading-inter-light'
                         : 'italic font-normal'
                     }`}
                   >

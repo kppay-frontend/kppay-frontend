@@ -31,25 +31,19 @@ const IndividualPricingHero = () => {
         {/* Content Layer */}
         <div className="relative z-10 container-padding pt-32 sm:pt-0 h-full flex items-center justify-center">
           <div className="text-center max-w-4xl">
-            <h1
-              className="heading-bebas text-5xl sm:text-6xl lg:text-7xl text-text-main-white mb-6"
-              style={{ textShadow: '0 2px 6px rgba(0, 0, 0, 0.4)' }}
-            >
+            <h1 className="hero-heading">
               Banking Made Simple
               <br />
               For Individuals
             </h1>
-            <p
-              className="text-text-main-white/90 text-base sm:text-lg lg:text-xl mb-8 mx-auto max-w-2xl leading-relaxed"
-              style={{ textShadow: '0 2px 6px rgba(0, 0, 0, 0.4)' }}
-            >
+            <p className="hero-description">
               Experience modern banking designed for your personal financial
               needs. From instant payments to smart savings, we have got you
               covered.
             </p>
 
             {/* Stats */}
-            <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 sm:gap-6 text-text-main-white px-4 mb-8 sm:mb-0">
+            <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 sm:gap-6 text-text-main-white px-4 mb-8 md:mb-0">
               <div className="flex items-center gap-2">
                 <Users className="w-5 h-5 flex-shrink-0" />
                 <span className="text-sm font-medium">User rating</span>

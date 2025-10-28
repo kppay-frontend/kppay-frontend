@@ -6,7 +6,7 @@ const ResourcesHeroSection = () => {
   return (
     <section className="relative -mt-24 overflow-hidden">
       {/* Hero Container */}
-      <div className="relative h-[680px] sm:h-[700px] md:h-[750px] lg:h-[800px]">
+      <div className="relative h-[680px] sm:h-[550px] md:h-[600px]">
         {/* Background Gradient */}
         <div className="absolute inset-0 z-0">
           <Image
@@ -24,16 +24,8 @@ const ResourcesHeroSection = () => {
         {/* Content Layer */}
         <div className="relative z-10 container-padding pt-24 sm:pt-0 h-full flex items-center justify-center">
           <div className="text-center max-w-4xl">
-            <h1
-              className="heading-bebas text-5xl sm:text-6xl lg:text-7xl xl:text-8xl text-text-main-white mb-6"
-              style={{ textShadow: '0 2px 6px rgba(0, 0, 0, 0.4)' }}
-            >
-              Resources and Documentation
-            </h1>
-            <p
-              className="text-text-main-white/90 text-lg sm:text-xl lg:text-2xl mb-8 mx-auto max-w-3xl"
-              style={{ textShadow: '0 2px 6px rgba(0, 0, 0, 0.4)' }}
-            >
+            <h1 className="hero-heading">Resources and Documentation</h1>
+            <p className="hero-description">
               Everything you need to build, integrate and scale with KP Pay.
               From API docs to best practices
             </p>
