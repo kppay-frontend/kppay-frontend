@@ -51,12 +51,18 @@ export { default as BusinessBankingSuite } from '@/components/sections/Enterpris
 // Resources and Documentation
 export { default as ResourcesHeroSection } from '@/components/sections/Resources/ResourcesHeroSection';
 
+// Service Components
+export { ServiceHero } from '@/components/services/ServiceHero';
+export { ServiceFeatures } from '@/components/services/ServiceFeatures';
+export { LoanCards } from '@/components/services/LoanCards';
+
 // UI Components
 export { Button, buttonVariants } from '@/components/ui/Button';
 
 // Config
 export { getLayoutConfig } from '@/config/layout.config';
 export { default as images, getOptimizedImage } from '@/config/images';
+export { servicesData } from '@/config/servicesData';
 
 // Utils
 export { cn } from '@/lib/utils';
@@ -97,4 +103,51 @@ export interface MegaMenuColumn {
 export interface PageProps {
   params: { [key: string]: string };
   searchParams: { [key: string]: string | string[] | undefined };
+}
+
+// ============================================
+// Service Types
+// ============================================
+export interface ServiceHeroData {
+  title: string;
+  description: string;
+  imageSrc: string;
+  imageAlt: string;
+  primaryButtonText: string;
+  primaryButtonHref: string;
+  secondaryButtonText?: string;
+  secondaryButtonHref?: string;
+}
+
+export interface ServiceFeature {
+  icon?: React.ReactNode;
+  title: string;
+  description: string;
+  items: string[];
+}
+
+export interface ServiceFeaturesData {
+  title: string;
+  features: ServiceFeature[];
+  variant?: 'blue' | 'gray';
+}
+
+export interface LoanCardData {
+  title: string;
+  description: string;
+  rateRange: string;
+  amountRange: string;
+  termRange: string;
+  features: string[];
+}
+
+export interface LoanCardsData {
+  title: string;
+  loans: LoanCardData[];
+}
+
+export interface ServicePageData {
+  hero: ServiceHeroData;
+  features?: ServiceFeaturesData;
+  loanCards?: LoanCardsData;
 }

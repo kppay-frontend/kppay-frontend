@@ -16,13 +16,15 @@ export const images = {
   hero: {
     gradient: `${CDN_BASE_URL}/image/upload/v1761381285/mainGradient_ts84qy.png`,
     main: `${CDN_BASE_URL}/image/upload/v1761388414/heroImage_tj2zy6.png`,
+    people1: `${CDN_BASE_URL}/image/upload/v1761760335/people1_zoafif.png`,
+    people2: `${CDN_BASE_URL}/image/upload/v1761760334/people2_geasub.png`,
+    people3: `${CDN_BASE_URL}/image/upload/v1761760335/people3_scnbne.png`,
+    people4: `${CDN_BASE_URL}/image/upload/v1761760335/people4_a5yhgu.png`,
   },
 
   // homepage section images
   homepage: {
-    // map: `${CDN_BASE_URL}/image/upload/v1761388729/map_ngenmt.webp`,
     map: `${CDN_BASE_URL}/image/upload/v1761649870/MapChart_Map_w1loa7.png`,
-    // map2: `${CDN_BASE_URL}/image/upload/v1761650323/MapChart_Map_-_white_bg_j6zyrz.png`,
     setup1: `${CDN_BASE_URL}/image/upload/v1761391731/image1_ohjudc.png`,
     setup2: `${CDN_BASE_URL}/image/upload/v1761391731/image2_dgiwhx.png`,
     setup3: `${CDN_BASE_URL}/image/upload/v1761391730/image3_mpgqkb.png`,
@@ -72,13 +74,21 @@ export const images = {
 
   // Services icons
   services: {
-    secure:
-      'https://res.cloudinary.com/dfwty72r9/image/upload/v1761542953/secure_ga4mvp.webp',
-    wallet:
-      'https://res.cloudinary.com/dfwty72r9/image/upload/v1761542953/wallet_vvqght.webp',
-    bill: 'https://res.cloudinary.com/dfwty72r9/image/upload/v1761542953/bill_ryz6nl.webp',
-    ecommerce:
-      'https://res.cloudinary.com/dfwty72r9/image/upload/v1761542953/ecommerce_iyplvz.webp',
+    secure: `${CDN_BASE_URL}/image/upload/v1761542953/secure_ga4mvp.webp`,
+    wallet: `${CDN_BASE_URL}/image/upload/v1761542953/wallet_vvqght.webp`,
+    bill: `${CDN_BASE_URL}/image/upload/v1761542953/bill_ryz6nl.webp`,
+    ecommerce: `${CDN_BASE_URL}/image/upload/v1761542953/ecommerce_iyplvz.webp`,
+
+    // Service page hero images
+    onlinePayment: `${CDN_BASE_URL}/image/upload/v1761718349/online-payment_gsjwoy.webp`,
+    pointOfSale: `${CDN_BASE_URL}/image/upload/v1761718350/point-of-sale-solutions_j0kitu.webp`,
+    mobilePayments: `${CDN_BASE_URL}/image/upload/v1761718349/mobile-payments_zewiev.webp`,
+    subscriptions: `${CDN_BASE_URL}/image/upload/v1761718350/subscriptions_exjuna.webp`,
+    businessAccounts: `${CDN_BASE_URL}/image/upload/v1761718350/business-accounts_y9up6i.webp`,
+    savings: `${CDN_BASE_URL}/image/upload/v1761718349/savings_pfpl3e.webp`,
+    loans: `${CDN_BASE_URL}/image/upload/v1761718349/loans_zxzc0n.webp`,
+    analytics: `${CDN_BASE_URL}/image/upload/v1761718350/analytics_wl9gbh.webp`,
+    compliance: `${CDN_BASE_URL}/image/upload/v1761718349/compliance_yeh3ql.webp`,
   },
 
   // Background images
