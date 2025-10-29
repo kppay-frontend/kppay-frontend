@@ -1,259 +1,411 @@
-// src/components/layout/Footer.tsx
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
-import { Twitter, Facebook, Instagram, Linkedin } from 'lucide-react';
+import {
+  Facebook,
+  Instagram,
+  Linkedin,
+  Youtube,
+  Send,
+  Mail,
+} from 'lucide-react';
 import Image from 'next/image';
 import { images } from '@/types';
 
-export default function Footer2() {
+export default function Footer() {
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: 'success' | 'error' | null;
+    message: string;
+  }>({ type: null, message: '' });
+
   const currentYear = new Date().getFullYear();
+  const currentDate = new Date().toLocaleDateString('en-US', {
+    month: '2-digit',
+    day: '2-digit',
+    year: 'numeric',
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: '' });
+
+    try {
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus({
+          type: 'success',
+          message: '🎉 Successfully subscribed!',
+        });
+        setEmail('');
+      } else {
+        setSubmitStatus({
+          type: 'error',
+          message: data.error || 'Failed to subscribe. Please try again.',
+        });
+      }
+    } catch (error) {
+      console.error('Newsletter error:', error);
+      setSubmitStatus({
+        type: 'error',
+        message: 'Network error. Please check your connection and try again.',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
-    <footer className="bg-surface-primary py-16">
-      <div className="max-w-7xl mx-auto border-t border-border-secondary container-padding py-12">
+    <footer className="bg-brand-secondary text-white py-12 md:py-16">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
-          {/* Brand Column - Full width on mobile */}
-          <div className="col-span-2 md:col-span-1">
-            <Link href="/" className="flex items-center mb-4">
-              <div className="relative w-[140px] h-[40px]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mb-12">
+          {/* Left Section - Logo, Newsletter & Social */}
+          <div className="lg:col-span-3 text-center lg:text-left">
+            {/* Logo */}
+            <Link href="/" className="inline-block mb-6">
+              <div className="relative w-[120px] h-[35px] mx-auto lg:mx-0">
                 <Image
                   src={images.logos.primary}
-                  alt="KPPAY Logo"
+                  alt="KP Pay Logo"
                   fill
-                  className="object-contain object-left"
+                  className="object-contain"
                 />
               </div>
             </Link>
-            <p className="text-text-secondary text-sm mb-6">
-              KPpay, a secured online payment gateway that allows payment in
-              multiple currencies easily, safely and securely.
-            </p>
-            <div className="flex items-center gap-4">
-              <Link
-                href="https://twitter.com"
-                target="_blank"
-                className="text-text-secondary hover:text-brand-primary transition-colors"
-              >
-                <Twitter className="w-5 h-5" />
-              </Link>
+
+            {/* Newsletter Section */}
+            <div className="mb-6">
+              <h3 className="font-semibold text-white mb-3">Stay Updated</h3>
+              <form onSubmit={handleSubmit} className="space-y-3">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email"
+                  required
+                  className="w-full px-4 py-2.5 bg-white text-gray-900 placeholder:text-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all text-sm"
+                />
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                >
+                  <Mail className="w-4 h-4" />
+                  <span>{isSubmitting ? 'Subscribing...' : 'Subscribe'}</span>
+                </button>
+
+                {submitStatus.type && (
+                  <div
+                    className={`p-2 rounded-lg text-xs ${
+                      submitStatus.type === 'success'
+                        ? 'bg-green-500/20 text-green-300'
+                        : 'bg-red-500/20 text-red-300'
+                    }`}
+                  >
+                    {submitStatus.message}
+                  </div>
+                )}
+              </form>
+            </div>
+
+            {/* Social Icons */}
+            <div className="flex items-center justify-center lg:justify-start gap-3">
               <Link
                 href="https://facebook.com"
                 target="_blank"
-                className="text-text-secondary hover:text-brand-primary transition-colors"
+                className="w-9 h-9 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center transition-colors"
               >
-                <Facebook className="w-5 h-5" />
+                <Facebook className="w-4 h-4 text-white" />
               </Link>
               <Link
                 href="https://instagram.com"
                 target="_blank"
-                className="text-text-secondary hover:text-brand-primary transition-colors"
+                className="w-9 h-9 bg-pink-600 hover:bg-pink-700 rounded-full flex items-center justify-center transition-colors"
               >
-                <Instagram className="w-5 h-5" />
+                <Instagram className="w-4 h-4 text-white" />
               </Link>
               <Link
                 href="https://linkedin.com"
                 target="_blank"
-                className="text-text-secondary hover:text-brand-primary transition-colors"
+                className="w-9 h-9 bg-blue-700 hover:bg-blue-800 rounded-full flex items-center justify-center transition-colors"
               >
-                <Linkedin className="w-5 h-5" />
+                <Linkedin className="w-4 h-4 text-white" />
+              </Link>
+              <Link
+                href="https://t.me"
+                target="_blank"
+                className="w-9 h-9 bg-blue-500 hover:bg-blue-600 rounded-full flex items-center justify-center transition-colors"
+              >
+                <Send className="w-4 h-4 text-white" />
+              </Link>
+              <Link
+                href="https://youtube.com"
+                target="_blank"
+                className="w-9 h-9 bg-red-600 hover:bg-red-700 rounded-full flex items-center justify-center transition-colors"
+              >
+                <Youtube className="w-4 h-4 text-white" />
               </Link>
             </div>
           </div>
 
-          {/* Company Column */}
-          <div>
-            <h3 className="font-semibold text-text-secondary mb-4">Company</h3>
-            <ul className="space-y-3">
-              <li>
-                <Link
-                  href="/about"
-                  className="text-text-main-dark hover:text-brand-primary transition-colors text-sm"
-                >
-                  About us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-text-main-dark hover:text-brand-primary transition-colors text-sm"
-                >
-                  Contact us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/careers"
-                  className="text-text-main-dark hover:text-brand-primary transition-colors text-sm"
-                >
-                  Careers
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/press"
-                  className="text-text-main-dark hover:text-brand-primary transition-colors text-sm"
-                >
-                  Press
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/resources-and-documentation"
-                  className="text-text-main-dark hover:text-brand-primary transition-colors text-sm"
-                >
-                  Documentation
-                </Link>
-              </li>
-            </ul>
-          </div>
+          {/* Right Section - Navigation Columns */}
+          <div className="lg:col-span-9 grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8">
+            {/* Company Column */}
+            <div>
+              <h3 className="font-semibold text-white mb-4">Company</h3>
+              <ul className="space-y-2.5">
+                <li>
+                  <Link
+                    href="/about"
+                    className="text-white/80 hover:text-white transition-colors text-sm"
+                  >
+                    About Us
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/careers"
+                    className="text-white/80 hover:text-white transition-colors text-sm"
+                  >
+                    Careers
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/news"
+                    className="text-white/80 hover:text-white transition-colors text-sm"
+                  >
+                    Newsroom
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/about"
+                    className="text-white/80 hover:text-white transition-colors text-sm"
+                  >
+                    Investor Relations
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/contact"
+                    className="text-white/80 hover:text-white transition-colors text-sm"
+                  >
+                    Contact Us
+                  </Link>
+                </li>
+              </ul>
+            </div>
 
-          {/* Product Column */}
-          <div>
-            <h3 className="font-semibold text-text-secondary mb-4">Product</h3>
-            <ul className="space-y-3">
-              <li>
-                <Link
-                  href="/features"
-                  className="text-text-main-dark hover:text-brand-primary transition-colors text-sm"
-                >
-                  Features
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/pricing"
-                  className="text-text-main-dark hover:text-brand-primary transition-colors text-sm"
-                >
-                  Pricing
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/news"
-                  className="text-text-main-dark hover:text-brand-primary transition-colors text-sm"
-                >
-                  News
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/help"
-                  className="text-text-main-dark hover:text-brand-primary transition-colors text-sm"
-                >
-                  Help desk
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/support"
-                  className="text-text-main-dark hover:text-brand-primary transition-colors text-sm"
-                >
-                  Support
-                </Link>
-              </li>
-            </ul>
-          </div>
+            {/* Products Column */}
+            <div>
+              <h3 className="font-semibold text-white mb-4">Products</h3>
+              <ul className="space-y-2.5">
+                <li>
+                  <Link
+                    href="/features"
+                    className="text-white/80 hover:text-white transition-colors text-sm"
+                  >
+                    Global Payments
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/features"
+                    className="text-white/80 hover:text-white transition-colors text-sm"
+                  >
+                    Virtual Cards
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/features"
+                    className="text-white/80 hover:text-white transition-colors text-sm"
+                  >
+                    Currency Exchange
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/features"
+                    className="text-white/80 hover:text-white transition-colors text-sm"
+                  >
+                    Business Banking
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/features"
+                    className="text-white/80 hover:text-white transition-colors text-sm"
+                  >
+                    See All Products
+                  </Link>
+                </li>
+              </ul>
+            </div>
 
-          {/* Services Column */}
-          <div>
-            <h3 className="font-semibold text-text-secondary mb-4">Services</h3>
-            <ul className="space-y-3">
-              <li>
-                <Link
-                  href="/services/digital-marketing"
-                  className="text-text-main-dark hover:text-brand-primary transition-colors text-sm"
-                >
-                  Digital Marketing
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services/content-writing"
-                  className="text-text-main-dark hover:text-brand-primary transition-colors text-sm"
-                >
-                  Content Writing
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services/seo"
-                  className="text-text-main-dark hover:text-brand-primary transition-colors text-sm"
-                >
-                  SEO for Business
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services/ui-design"
-                  className="text-text-main-dark hover:text-brand-primary transition-colors text-sm"
-                >
-                  UI Design
-                </Link>
-              </li>
-            </ul>
+            {/* Developers Column */}
+            <div>
+              <h3 className="font-semibold text-white mb-4">Developers</h3>
+              <ul className="space-y-2.5">
+                <li>
+                  <Link
+                    href="/resources-and-documentation"
+                    className="text-white/80 hover:text-white transition-colors text-sm"
+                  >
+                    API Documentation
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/resources-and-documentation"
+                    className="text-white/80 hover:text-white transition-colors text-sm"
+                  >
+                    SDKs & Libraries
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/resources-and-documentation"
+                    className="text-white/80 hover:text-white transition-colors text-sm"
+                  >
+                    Webhooks
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/resources-and-documentation"
+                    className="text-white/80 hover:text-white transition-colors text-sm"
+                  >
+                    Developer Community
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* Resources & Support Column */}
+            <div>
+              <h3 className="font-semibold text-white mb-4">
+                Resources & Support
+              </h3>
+              <ul className="space-y-2.5">
+                <li>
+                  <Link
+                    href="/help"
+                    className="text-white/80 hover:text-white transition-colors text-sm"
+                  >
+                    Help Center
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/news"
+                    className="text-white/80 hover:text-white transition-colors text-sm"
+                  >
+                    Blog
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/resources-and-documentation"
+                    className="text-white/80 hover:text-white transition-colors text-sm"
+                  >
+                    Case Studies
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/resources-and-documentation"
+                    className="text-white/80 hover:text-white transition-colors text-sm"
+                  >
+                    Guides
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/support"
+                    className="text-white/80 hover:text-white transition-colors text-sm"
+                  >
+                    Customer Support
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 
-        {/* Bottom Section - Legal links horizontal on all screens */}
-        <div className="border-t border-border-secondary pt-6 mt-6">
-          {/* Legal Links - Horizontal on all screens */}
-          <div className="flex flex-wrap items-center justify-center gap-3 md:gap-4 text-xs md:text-sm text-text-secondary mb-4">
-            <Link
-              href="/legal/terms"
-              className="hover:text-brand-primary transition-colors"
-            >
-              Terms and Condition
-            </Link>
-            <span>|</span>
-            <Link
-              href="/legal/privacy"
-              className="hover:text-brand-primary transition-colors"
-            >
-              Privacy Policy
-            </Link>
-            <span>|</span>
-            <Link
-              href="/legal/cookie-policy"
-              className="hover:text-brand-primary transition-colors"
-            >
-              Cookie Policy
-            </Link>
-            <span>|</span>
-            <Link
-              href="/legal/intellectual-property"
-              className="hover:text-brand-primary transition-colors"
-            >
-              Intellectual Property Policy
-            </Link>
-            <span>|</span>
-            <Link
-              href="/legal/aml"
-              className="hover:text-brand-primary transition-colors"
-            >
-              Anti-Money Laundry Policy
-            </Link>
-            <span>|</span>
-            <Link
-              href="/legal/anti-corruption"
-              className="hover:text-brand-primary transition-colors"
-            >
-              Anti-Corruption Policy
-            </Link>
-            <span>|</span>
-            <Link
-              href="/legal/gift-policy"
-              className="hover:text-brand-primary transition-colors"
-            >
-              Gift Policy
-            </Link>
+        {/* Bottom Section */}
+        <div className="pt-8">
+          {/* Legal Links - Horizontal with borders */}
+          <div className="border-t border-b border-white/20 py-6">
+            <div className="flex flex-wrap items-center justify-center gap-3 md:gap-4 text-xs md:text-sm text-white/90">
+              <Link
+                href="/legal/terms"
+                className="hover:text-white transition-colors"
+              >
+                Terms and Condition
+              </Link>
+              <span className="text-white/40">|</span>
+              <Link
+                href="/legal/privacy"
+                className="hover:text-white transition-colors"
+              >
+                Privacy Policy
+              </Link>
+              <span className="text-white/40">|</span>
+              <Link
+                href="/legal/cookie-policy"
+                className="hover:text-white transition-colors"
+              >
+                Cookie Policy
+              </Link>
+              <span className="text-white/40">|</span>
+              <Link
+                href="/legal/intellectual-property"
+                className="hover:text-white transition-colors"
+              >
+                Intellectual Property Policy
+              </Link>
+              <span className="text-white/40">|</span>
+              <Link
+                href="/legal/aml"
+                className="hover:text-white transition-colors"
+              >
+                Anti-Money Laundry Policy
+              </Link>
+              <span className="text-white/40">|</span>
+              <Link
+                href="/legal/anti-corruption"
+                className="hover:text-white transition-colors"
+              >
+                Anti-Corruption Policy
+              </Link>
+              <span className="text-white/40">|</span>
+              <Link
+                href="/legal/gift-policy"
+                className="hover:text-white transition-colors"
+              >
+                Gift Policy
+              </Link>
+            </div>
           </div>
 
-          {/* Copyright - All views */}
-          <p className="text-center text-sm text-text-secondary">
-            © {currentYear} KPPAY. All rights reserved.
-          </p>
+          {/* Copyright & Last Updated - Outside border */}
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-white/70 pt-6">
+            <p>© {currentYear} KP Pay. All rights reserved.</p>
+            <p>Last updated: {currentDate}</p>
+          </div>
         </div>
       </div>
     </footer>
