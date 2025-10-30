@@ -11,7 +11,7 @@ import { CreditCard, Smartphone, Globe, Lock } from 'lucide-react';
 export default function OnlinePaymentsPage() {
   const features: ServiceFeature[] = [
     {
-      icon: <CreditCard className="w-10 h-10 text-text-inverse-secondary" />,
+      icon: <CreditCard className="w-10 h-10" />,
       title: 'Credit and Debit Cards',
       description: 'Accept all major card payments worldwide.',
       items: [
@@ -23,7 +23,7 @@ export default function OnlinePaymentsPage() {
       ],
     },
     {
-      icon: <Smartphone className="w-10 h-10 text-text-inverse-secondary" />,
+      icon: <Smartphone className="w-10 h-10" />,
       title: 'Local Payment Methods',
       description: 'Regional payment options for African markets.',
       items: [
@@ -34,7 +34,7 @@ export default function OnlinePaymentsPage() {
       ],
     },
     {
-      icon: <Globe className="w-10 h-10 text-text-inverse-secondary" />,
+      icon: <Globe className="w-10 h-10" />,
       title: 'Digital Wallets',
       description: 'Integrate popular digital payment methods.',
       items: [
@@ -46,7 +46,7 @@ export default function OnlinePaymentsPage() {
       ],
     },
     {
-      icon: <Lock className="w-10 h-10 text-text-inverse-secondary" />,
+      icon: <Lock className="w-10 h-10" />,
       title: 'Digital Wallets',
       description: 'Integrate popular digital payment methods.',
       items: [
@@ -74,7 +74,15 @@ export default function OnlinePaymentsPage() {
       <ServiceFeatures
         title="Accept Any Payment Method"
         features={features}
-        variant="blue"
+        variant="primary"
+        customColors={{
+          sectionTitle: 'text-text-inverse-primary',
+          featureTitle: 'text-text-inverse-primary',
+          description: 'text-text-main-white',
+          checkIcon: 'text-text-inverse-primary',
+          listItem: 'text-white',
+        }}
+        boxOpacity={10}
       />
     </main>
   );

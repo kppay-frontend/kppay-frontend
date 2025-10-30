@@ -117,6 +117,7 @@ export interface ServiceHeroData {
   primaryButtonHref: string;
   secondaryButtonText?: string;
   secondaryButtonHref?: string;
+  imageSize?: 'sm' | 'md' | 'lg' | 'xl';
 }
 
 export interface ServiceFeature {
@@ -129,7 +130,15 @@ export interface ServiceFeature {
 export interface ServiceFeaturesData {
   title: string;
   features: ServiceFeature[];
-  variant?: 'blue' | 'gray';
+  variant?: 'primary' | 'blue' | 'gray';
+  boxOpacity?: 10 | 15 | 20 | 30 | 40 | 50;
+  customColors?: {
+    sectionTitle?: string;
+    featureTitle?: string;
+    description?: string;
+    checkIcon?: string;
+    listItem?: string;
+  };
 }
 
 export interface LoanCardData {

@@ -6,14 +6,15 @@ import {
   images,
   type ServiceFeature,
 } from '@/types';
-import { FileText, BarChart2, Users as UsersIcon, Shield } from 'lucide-react';
+import { FileText, BarChart, Users, Shield } from 'lucide-react';
 
 export default function ReportingPage() {
   const features: ServiceFeature[] = [
     {
-      icon: <FileText className="w-10 h-10 text-text-inverse-secondary" />,
+      icon: <FileText className="w-10 h-10" />,
       title: 'Financial Reports',
-      description: 'Comprehensive financial statements and accounting reports.',
+      description:
+        'Comprehensive financial statements and accounting reports with customizable templates.',
       items: [
         'Profit & Loss Statement',
         'Balance Sheet',
@@ -22,21 +23,22 @@ export default function ReportingPage() {
       ],
     },
     {
-      icon: <BarChart2 className="w-10 h-10 text-text-inverse-secondary" />,
+      icon: <BarChart className="w-10 h-10" />,
       title: 'Transaction Reports',
       description:
-        'Detailed transaction data and payment processing analytics.',
+        'Detailed transaction data and payment processing analytics for business insights.',
       items: [
         'Transaction Summary',
         'Payment Method Analysis',
-        'Failed Payment Report',
+        'Flagged Payment Report',
         'Chargeback Report',
       ],
     },
     {
-      icon: <UsersIcon className="w-10 h-10 text-text-inverse-secondary" />,
+      icon: <Users className="w-10 h-10" />,
       title: 'Customer Reports',
-      description: 'Customer behavior and demographic analysis reports.',
+      description:
+        'Customer behavior and demographic analysis reports to understand your client base better.',
       items: [
         'Customer Lifetime Value',
         'Acquisition Report',
@@ -45,13 +47,14 @@ export default function ReportingPage() {
       ],
     },
     {
-      icon: <Shield className="w-10 h-10 text-text-inverse-secondary" />,
+      icon: <Shield className="w-10 h-10" />,
       title: 'Compliance Reports',
-      description: 'Regulatory and compliance documentation for audits.',
+      description:
+        'Regulatory and compliance documentation for audits with automated generation and delivery.',
       items: [
         'AML Compliance Report',
-        'KYC Status Report',
         'PCI DSS Documentation',
+        'KYC Status Report',
         'Audit Trail',
       ],
     },
@@ -63,7 +66,7 @@ export default function ReportingPage() {
         title="Reporting and Documentation"
         description="Generate comprehensive financial reports automatically. Customizable templates, automated delivery, and compliance documentation to keep your business informed and compliant."
         imageSrc={images.services.businessAccounts}
-        imageAlt="Business Reports"
+        imageAlt="Reporting and Documentation"
         primaryButtonText="Setup Reporting"
         primaryButtonHref="/signup"
         secondaryButtonText="View Report Samples"
@@ -74,6 +77,14 @@ export default function ReportingPage() {
         title="Comprehensive Report Library"
         features={features}
         variant="blue"
+        customColors={{
+          sectionTitle: 'text-text-inverse-secondary',
+          featureTitle: 'text-text-inverse-secondary',
+          description: 'text-text-main-white',
+          checkIcon: 'text-text-inverse-secondary',
+          listItem: 'text-white',
+        }}
+        boxOpacity={10}
       />
     </main>
   );

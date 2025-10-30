@@ -6,14 +6,15 @@ import {
   images,
   type ServiceFeature,
 } from '@/types';
-import { Shield, FileCheck, AlertTriangle, FileText } from 'lucide-react';
+import { Shield, FileText, AlertTriangle, CheckCircle } from 'lucide-react';
 
 export default function CompliancePage() {
   const features: ServiceFeature[] = [
     {
-      icon: <Shield className="w-10 h-10 text-text-inverse-secondary" />,
+      icon: <Shield className="w-10 h-10" />,
       title: 'PCI DSS Compliance',
-      description: 'Comprehensive financial statements and accounting reports.',
+      description:
+        'Comprehensive financial statements and accounting reports for regulatory compliance.',
       items: [
         'Profit & Loss Statement',
         'Balance Sheet',
@@ -22,21 +23,22 @@ export default function CompliancePage() {
       ],
     },
     {
-      icon: <FileCheck className="w-10 h-10 text-text-inverse-secondary" />,
+      icon: <FileText className="w-10 h-10" />,
       title: 'AML/KYC Management',
       description:
-        'Detailed transaction data and payment processing analytics.',
+        'Detailed transaction data and payment processing analytics for anti-money laundering compliance.',
       items: [
         'Transaction Summary',
         'Payment Method Analysis',
-        'Failed Payment Report',
+        'Flagged Payment Report',
         'Chargeback Report',
       ],
     },
     {
-      icon: <AlertTriangle className="w-10 h-10 text-text-inverse-secondary" />,
+      icon: <AlertTriangle className="w-10 h-10" />,
       title: 'Fraud Detection',
-      description: 'Customer behavior and demographic analysis reports.',
+      description:
+        'Customer behavior and demographic analysis reports to identify and prevent fraudulent activities.',
       items: [
         'Customer Lifetime Value',
         'Acquisition Report',
@@ -45,13 +47,14 @@ export default function CompliancePage() {
       ],
     },
     {
-      icon: <FileText className="w-10 h-10 text-text-inverse-secondary" />,
+      icon: <CheckCircle className="w-10 h-10" />,
       title: 'Regulatory Reporting',
-      description: 'Regulatory and compliance documentation for audits.',
+      description:
+        'Regulatory and compliance documentation for audits with automated report generation.',
       items: [
         'AML Compliance Report',
-        'KYC Status Report',
         'PCI DSS Documentation',
+        'KYC Status Report',
         'Audit Trail',
       ],
     },
@@ -63,17 +66,25 @@ export default function CompliancePage() {
         title="Compliance and Risk Management"
         description="Generate comprehensive financial reports automatically. Customizable templates, automated delivery, and compliance documentation to keep your business informed and compliant."
         imageSrc={images.services.compliance}
-        imageAlt="Compliance Management"
+        imageAlt="Compliance and Risk Management"
         primaryButtonText="Compliance Assessment"
-        primaryButtonHref="/signup"
+        primaryButtonHref="/assessment"
         secondaryButtonText="View Compliance Demo"
-        secondaryButtonHref="/demo"
+        secondaryButtonHref="/demo/compliance"
       />
 
       <ServiceFeatures
         title="Comprehensive Compliance Suite"
         features={features}
         variant="blue"
+        customColors={{
+          sectionTitle: 'text-text-inverse-secondary',
+          featureTitle: 'text-text-inverse-secondary',
+          description: 'text-text-main-white',
+          checkIcon: 'text-text-inverse-secondary',
+          listItem: 'text-white',
+        }}
+        boxOpacity={10}
       />
     </main>
   );

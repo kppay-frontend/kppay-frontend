@@ -75,6 +75,14 @@ export default function AnalyticsPage() {
         title="Powerful Analytics Features"
         features={features}
         variant="blue"
+        customColors={{
+          sectionTitle: 'text-text-inverse-secondary',
+          featureTitle: 'text-text-inverse-secondary',
+          description: 'text-text-main-white',
+          checkIcon: 'text-text-inverse-secondary',
+          listItem: 'text-white',
+        }}
+        boxOpacity={10}
       />
     </main>
   );

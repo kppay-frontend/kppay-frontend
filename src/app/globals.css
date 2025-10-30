@@ -303,14 +303,28 @@ footer h6 {
   margin-bottom: 1.25rem;
 }
 
+.hero-heading-dark {
+  font-family: var(--font-bebas), sans-serif;
+  /* font-weight: 700; */
+  word-spacing: var(--heading-word-spacing);
+  letter-spacing: var(--heading-letter-spacing);
+  text-transform: uppercase;
+  font-size: 40px;
+  line-height: 1.05;
+  color: var(--color-text-main-dark);
+  margin-bottom: 1.25rem;
+}
+
 @media (min-width: 768px) {
-  .hero-heading {
+  .hero-heading,
+  .hero-heading-dark {
     font-size: 55px;
   }
 }
 
 @media (min-width: 1024px) {
-  .hero-heading {
+  .hero-heading,
+  .hero-heading-dark {
     font-size: 60px;
   }
 }
@@ -326,14 +340,42 @@ footer h6 {
   margin-right: auto;
 }
 
+.hero-description-dark {
+  font-size: 15px;
+  line-height: 1.625;
+  color: var(--color-text-primary);
+  margin-bottom: 2rem;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 @media (min-width: 640px) {
-  .hero-description {
+  .hero-description,
+  .hero-description-dark {
     max-width: 700px;
   }
 }
 
 @media (min-width: 768px) {
-  .hero-description {
+  .hero-description,
+  .hero-description-dark {
     font-size: 16px;
   }
+}
+
+/* Service Feature Cards - All Viewports */
+.feature-card {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+/* Feature Card Hover Effect */
+.feature-card:hover {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.feature-card:hover .feature-description {
+  color: var(--color-text-main-white);
 }

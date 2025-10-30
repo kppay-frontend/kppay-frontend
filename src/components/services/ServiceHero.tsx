@@ -12,41 +12,50 @@ export const ServiceHero: React.FC<ServiceHeroData> = ({
   primaryButtonHref,
   secondaryButtonText,
   secondaryButtonHref,
+  imageSize = 'md',
 }) => {
+  // Image size classes
+  const imageSizeClass =
+    imageSize === 'sm'
+      ? 'max-w-lg'
+      : imageSize === 'md'
+      ? 'max-w-2xl'
+      : imageSize === 'lg'
+      ? 'max-w-3xl'
+      : 'max-w-4xl';
+
   return (
     <section className="bg-surface-primary py-16 md:py-20 lg:py-24">
       <div className="container-padding max-w-7xl mx-auto">
         <div className="text-center mb-12">
           {/* Title */}
-          <h1 className="heading-bebas text-4xl md:text-5xl lg:text-6xl text-text-primary mb-6">
-            {title}
-          </h1>
+          <h1 className="hero-heading-dark">{title}</h1>
 
           {/* Description */}
-          <p className="text-text-secondary text-base md:text-lg max-w-3xl mx-auto mb-8 leading-relaxed">
-            {description}
-          </p>
+          <p className="hero-description-dark">{description}</p>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button variant="primary" size="lg" href={primaryButtonHref}>
+            <Button variant="primary" size="md" href={primaryButtonHref}>
               {primaryButtonText}
             </Button>
             {secondaryButtonText && secondaryButtonHref && (
-              <Button variant="outlined" size="lg" href={secondaryButtonHref}>
+              <Button variant="outlined" size="md" href={secondaryButtonHref}>
                 {secondaryButtonText}
               </Button>
             )}
           </div>
         </div>
 
-        {/* Hero Image */}
-        <div className="relative w-full max-w-4xl mx-auto">
+        {/* Hero Image - Smaller and will be overlapped */}
+        <div
+          className={`relative w-full ${imageSizeClass} mx-auto -mb-32 md:-mb-40`}
+        >
           <Image
             src={imageSrc}
             alt={imageAlt}
-            width={1200}
-            height={600}
+            width={800}
+            height={400}
             className="w-full h-auto"
             priority
           />
