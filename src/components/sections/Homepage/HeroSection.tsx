@@ -26,7 +26,7 @@ export default function HeroSection() {
         );
         setIsTransitioning(false);
       }, 500);
-    }, 4000);
+    }, 3750);
 
     return () => clearInterval(interval);
   }, [peopleImages.length]);
