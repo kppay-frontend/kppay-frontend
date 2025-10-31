@@ -95,11 +95,11 @@ export default function HomePage() {
         theme="blue"
       /> */}
 
+      {/* Our Services section */}
+      <ServicesSection />
+
       {/* Why Choose Us */}
       <WhyChooseKPpay />
-
-      {/* Testimonials Section */}
-      <TestimonialsSection />
 
       {/* Secure Payment Section */}
       <SecurePaymentsSection />
@@ -107,8 +107,8 @@ export default function HomePage() {
       {/* Partners section */}
       <PartnersSection />
 
-      {/* Our Services section */}
-      <ServicesSection />
+      {/* Testimonials Section */}
+      <TestimonialsSection />
 
       {/* Frequently Asked Questions */}
       <FAQSection />

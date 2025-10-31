@@ -2,7 +2,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button, images } from '@/types';
 import {
   Menu,
@@ -33,23 +33,33 @@ export default function Header({ variant = 'light' }: HeaderProps) {
   const [megaMenuOpen, setMegaMenuOpen] = useState(false);
   const [mobileSubMenuOpen, setMobileSubMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [closeTimeout, setCloseTimeout] = useState<NodeJS.Timeout | null>(null);
+  const [isClosing, setIsClosing] = useState(false);
 
   const isLight = variant === 'light';
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const closingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const handleMegaMenuEnter = () => {
-    if (closeTimeout) {
-      clearTimeout(closeTimeout);
-      setCloseTimeout(null);
+  const handleMouseEnter = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
     }
+    if (closingTimeoutRef.current) {
+      clearTimeout(closingTimeoutRef.current);
+      closingTimeoutRef.current = null;
+    }
+    setIsClosing(false);
     setMegaMenuOpen(true);
   };
 
-  const handleMegaMenuLeave = () => {
-    const timeout = setTimeout(() => {
-      setMegaMenuOpen(false);
-    }, 150);
-    setCloseTimeout(timeout);
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setIsClosing(true);
+      closingTimeoutRef.current = setTimeout(() => {
+        setMegaMenuOpen(false);
+        setIsClosing(false);
+      }, 150);
+    }, 100);
   };
 
   useEffect(() => {
@@ -60,9 +70,14 @@ export default function Header({ variant = 'light' }: HeaderProps) {
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      if (closeTimeout) clearTimeout(closeTimeout);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      if (closingTimeoutRef.current) {
+        clearTimeout(closingTimeoutRef.current);
+      }
     };
-  }, [closeTimeout]);
+  }, []);
 
   const closeMobileMenu = () => {
     setMobileMenuOpen(false);
@@ -148,6 +163,21 @@ export default function Header({ variant = 'light' }: HeaderProps) {
           animation: slide-down-fade 0.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
+        .animate-slide-up-fade-out {
+          animation: slide-up-fade-out 0.15s cubic-bezier(0.4, 0, 1, 1) forwards;
+        }
+
+        @keyframes slide-up-fade-out {
+          from {
+            opacity: 1;
+            transform: translateY(0);
+          }
+          to {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+        }
+
         .animate-slide-up {
           animation: slide-up 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -157,7 +187,6 @@ export default function Header({ variant = 'light' }: HeaderProps) {
         }
       `}</style>
 
-      {/* Backdrop blur when scrolled - only above header */}
       {isScrolled && (
         <div
           className="fixed top-0 left-0 right-0 pointer-events-none z-40 transition-all duration-300"
@@ -190,11 +219,11 @@ export default function Header({ variant = 'light' }: HeaderProps) {
             <div className="flex items-center justify-between">
               <Link href="/" className="flex items-center">
                 <div
-                  className="relative transition-all duration-300"
-                  style={{
-                    width: isScrolled ? '120px' : '140px',
-                    height: isScrolled ? '32px' : '40px',
-                  }}
+                  className={`relative transition-all duration-300 ${
+                    isScrolled
+                      ? 'w-[100px] h-[28px] md:w-[85px] md:h-[24px] lg:w-[120px] lg:h-[32px]'
+                      : 'w-[120px] h-[32px] md:w-[95px] md:h-[26px] lg:w-[140px] lg:h-[40px]'
+                  }`}
                 >
                   <Image
                     src={
@@ -208,7 +237,7 @@ export default function Header({ variant = 'light' }: HeaderProps) {
                 </div>
               </Link>
 
-              <div className="hidden md:flex items-center gap-4 lg:gap-8">
+              <div className="hidden md:flex items-center gap-2 lg:gap-8">
                 <Link
                   href="/about"
                   className={`font-medium text-xs lg:text-sm transition-colors ${
@@ -221,10 +250,9 @@ export default function Header({ variant = 'light' }: HeaderProps) {
                 </Link>
 
                 <div
-                  className="relative flex items-center gap-1"
-                  onMouseOver={handleMegaMenuEnter}
-                  onClick={handleMegaMenuLeave}
-                  // onMouseOut={handleMegaMenuLeave}
+                  className="relative flex items-center gap-1 py-2"
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
                 >
                   <span
                     className={`font-medium text-xs lg:text-sm transition-colors cursor-default ${
@@ -278,28 +306,46 @@ export default function Header({ variant = 'light' }: HeaderProps) {
                 >
                   Resources
                 </Link>
+
+                <Link
+                  href="/faqs"
+                  className={`font-medium text-xs lg:text-sm transition-colors ${
+                    useWhiteText
+                      ? 'text-text-main-white hover:text-brand-primary'
+                      : 'text-text-primary hover:text-brand-primary'
+                  }`}
+                >
+                  FAQs
+                </Link>
               </div>
 
-              <div className="hidden md:flex items-center gap-3">
-                {/* Language Switcher */}
-                <LanguageSwitcher />
-
+              <div className="hidden md:flex items-center gap-1.5 lg:gap-3">
+                <div className="hidden lg:block">
+                  <LanguageSwitcher />
+                </div>
+                <div className="block md:block lg:hidden">
+                  <LanguageSwitcher variant="mobile" />
+                </div>
                 <Button
                   variant={useWhiteText ? 'outlined-white' : 'outlined'}
                   size="sm"
                   href="/login"
+                  className="md:text-xs md:px-2.5 md:py-1.5 lg:text-sm lg:px-4 lg:py-2"
                 >
                   Log in
                 </Button>
-                <Button variant="primary" size="sm" href="/signup">
+                <Button
+                  variant="primary"
+                  size="sm"
+                  href="/signup"
+                  className="md:text-xs md:px-2.5 md:py-1.5 lg:text-sm lg:py-2"
+                >
                   Sign up
                 </Button>
               </div>
 
               <div className="md:hidden flex items-center gap-3">
-                {/* Language Switcher for Mobile */}
                 <LanguageSwitcher variant="mobile" />
-
                 <button
                   className="md:hidden"
                   onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -323,23 +369,30 @@ export default function Header({ variant = 'light' }: HeaderProps) {
         </nav>
       </header>
 
-      {/* Desktop Mega Menu */}
       {megaMenuOpen && !mobileMenuOpen && (
         <>
-          {/* Backdrop - clicking it closes the menu */}
           <div
-            className="fixed inset-0 z-40 bg-text-main-dark/20 animate-fade-in"
+            className={`fixed inset-0 z-40 bg-text-main-dark/20 transition-opacity duration-150 ${
+              isClosing ? 'opacity-0' : 'opacity-100 animate-fade-in'
+            }`}
             onClick={() => {
-              if (closeTimeout) clearTimeout(closeTimeout);
-              setMegaMenuOpen(false);
+              setIsClosing(true);
+              setTimeout(() => {
+                setMegaMenuOpen(false);
+                setIsClosing(false);
+              }, 150);
             }}
           />
-
-          {/* Mega Menu Content */}
           <div
-            className="hidden md:block fixed top-[78px] left-1/2 -translate-x-1/2 w-full max-w-7xl rounded-lg border border-border-secondary bg-surface-primary shadow-xl animate-slide-down-fade z-50"
-            onMouseEnter={handleMegaMenuEnter}
-            onMouseLeave={handleMegaMenuLeave}
+            className={`hidden md:block fixed left-1/2 -translate-x-1/2 w-full max-w-7xl rounded-lg border border-border-secondary bg-surface-primary shadow-xl z-50 transition-all duration-300 ${
+              isScrolled ? 'top-[69px]' : 'top-[78px]'
+            } ${
+              isClosing
+                ? 'animate-slide-up-fade-out'
+                : 'animate-slide-down-fade'
+            }`}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
             <div className="px-12 py-12">
               <div className="relative mb-8">
@@ -373,15 +426,11 @@ export default function Header({ variant = 'light' }: HeaderProps) {
               </div>
 
               <div className="grid grid-cols-3 gap-12">
-                {/* Payments Column */}
                 <div className="space-y-6">
                   <Link
                     href="/payments/online-payments"
                     className="block group"
-                    onClick={() => {
-                      if (closeTimeout) clearTimeout(closeTimeout);
-                      setMegaMenuOpen(false);
-                    }}
+                    onClick={() => setMegaMenuOpen(false)}
                   >
                     <div className="flex items-start gap-3">
                       <div className="w-10 h-10 bg-surface-secondary rounded-lg flex items-center justify-center group-hover:bg-brand-primary transition-colors shrink-0">
@@ -401,10 +450,7 @@ export default function Header({ variant = 'light' }: HeaderProps) {
                   <Link
                     href="/payments/point-of-sale"
                     className="block group"
-                    onClick={() => {
-                      if (closeTimeout) clearTimeout(closeTimeout);
-                      setMegaMenuOpen(false);
-                    }}
+                    onClick={() => setMegaMenuOpen(false)}
                   >
                     <div className="flex items-start gap-3">
                       <div className="w-10 h-10 bg-surface-secondary rounded-lg flex items-center justify-center group-hover:bg-brand-primary transition-colors shrink-0">
@@ -424,10 +470,7 @@ export default function Header({ variant = 'light' }: HeaderProps) {
                   <Link
                     href="/payments/mobile-payments"
                     className="block group"
-                    onClick={() => {
-                      if (closeTimeout) clearTimeout(closeTimeout);
-                      setMegaMenuOpen(false);
-                    }}
+                    onClick={() => setMegaMenuOpen(false)}
                   >
                     <div className="flex items-start gap-3">
                       <div className="w-10 h-10 bg-surface-secondary rounded-lg flex items-center justify-center group-hover:bg-brand-primary transition-colors shrink-0">
@@ -447,10 +490,7 @@ export default function Header({ variant = 'light' }: HeaderProps) {
                   <Link
                     href="/payments/recurring-billing"
                     className="block group"
-                    onClick={() => {
-                      if (closeTimeout) clearTimeout(closeTimeout);
-                      setMegaMenuOpen(false);
-                    }}
+                    onClick={() => setMegaMenuOpen(false)}
                   >
                     <div className="flex items-start gap-3">
                       <div className="w-10 h-10 bg-surface-secondary rounded-lg flex items-center justify-center group-hover:bg-brand-primary transition-colors shrink-0">
@@ -468,15 +508,11 @@ export default function Header({ variant = 'light' }: HeaderProps) {
                   </Link>
                 </div>
 
-                {/* Banking Column */}
                 <div className="space-y-6">
                   <Link
                     href="/banking/business-accounts"
                     className="block group"
-                    onClick={() => {
-                      if (closeTimeout) clearTimeout(closeTimeout);
-                      setMegaMenuOpen(false);
-                    }}
+                    onClick={() => setMegaMenuOpen(false)}
                   >
                     <div className="flex items-start gap-3">
                       <div className="w-10 h-10 bg-surface-secondary rounded-lg flex items-center justify-center group-hover:bg-brand-primary transition-colors shrink-0">
@@ -496,10 +532,7 @@ export default function Header({ variant = 'light' }: HeaderProps) {
                   <Link
                     href="/banking/personal-banking"
                     className="block group"
-                    onClick={() => {
-                      if (closeTimeout) clearTimeout(closeTimeout);
-                      setMegaMenuOpen(false);
-                    }}
+                    onClick={() => setMegaMenuOpen(false)}
                   >
                     <div className="flex items-start gap-3">
                       <div className="w-10 h-10 bg-surface-secondary rounded-lg flex items-center justify-center group-hover:bg-brand-primary transition-colors shrink-0">
@@ -519,10 +552,7 @@ export default function Header({ variant = 'light' }: HeaderProps) {
                   <Link
                     href="/banking/savings-investments"
                     className="block group"
-                    onClick={() => {
-                      if (closeTimeout) clearTimeout(closeTimeout);
-                      setMegaMenuOpen(false);
-                    }}
+                    onClick={() => setMegaMenuOpen(false)}
                   >
                     <div className="flex items-start gap-3">
                       <div className="w-10 h-10 bg-surface-secondary rounded-lg flex items-center justify-center group-hover:bg-brand-primary transition-colors shrink-0">
@@ -542,10 +572,7 @@ export default function Header({ variant = 'light' }: HeaderProps) {
                   <Link
                     href="/banking/loans-credit"
                     className="block group"
-                    onClick={() => {
-                      if (closeTimeout) clearTimeout(closeTimeout);
-                      setMegaMenuOpen(false);
-                    }}
+                    onClick={() => setMegaMenuOpen(false)}
                   >
                     <div className="flex items-start gap-3">
                       <div className="w-10 h-10 bg-surface-secondary rounded-lg flex items-center justify-center group-hover:bg-brand-primary transition-colors shrink-0">
@@ -563,15 +590,11 @@ export default function Header({ variant = 'light' }: HeaderProps) {
                   </Link>
                 </div>
 
-                {/* Financial Services Column */}
                 <div className="space-y-6">
                   <Link
                     href="/financial-services/analytics"
                     className="block group"
-                    onClick={() => {
-                      if (closeTimeout) clearTimeout(closeTimeout);
-                      setMegaMenuOpen(false);
-                    }}
+                    onClick={() => setMegaMenuOpen(false)}
                   >
                     <div className="flex items-start gap-3">
                       <div className="w-10 h-10 bg-surface-secondary rounded-lg flex items-center justify-center group-hover:bg-brand-primary transition-colors shrink-0">
@@ -591,10 +614,7 @@ export default function Header({ variant = 'light' }: HeaderProps) {
                   <Link
                     href="/financial-services/reporting"
                     className="block group"
-                    onClick={() => {
-                      if (closeTimeout) clearTimeout(closeTimeout);
-                      setMegaMenuOpen(false);
-                    }}
+                    onClick={() => setMegaMenuOpen(false)}
                   >
                     <div className="flex items-start gap-3">
                       <div className="w-10 h-10 bg-surface-secondary rounded-lg flex items-center justify-center group-hover:bg-brand-primary transition-colors shrink-0">
@@ -614,10 +634,7 @@ export default function Header({ variant = 'light' }: HeaderProps) {
                   <Link
                     href="/financial-services/tax-services"
                     className="block group"
-                    onClick={() => {
-                      if (closeTimeout) clearTimeout(closeTimeout);
-                      setMegaMenuOpen(false);
-                    }}
+                    onClick={() => setMegaMenuOpen(false)}
                   >
                     <div className="flex items-start gap-3">
                       <div className="w-10 h-10 bg-surface-secondary rounded-lg flex items-center justify-center group-hover:bg-brand-primary transition-colors shrink-0">
@@ -637,10 +654,7 @@ export default function Header({ variant = 'light' }: HeaderProps) {
                   <Link
                     href="/financial-services/compliance"
                     className="block group"
-                    onClick={() => {
-                      if (closeTimeout) clearTimeout(closeTimeout);
-                      setMegaMenuOpen(false);
-                    }}
+                    onClick={() => setMegaMenuOpen(false)}
                   >
                     <div className="flex items-start gap-3">
                       <div className="w-10 h-10 bg-surface-secondary rounded-lg flex items-center justify-center group-hover:bg-brand-primary transition-colors shrink-0">
@@ -663,7 +677,6 @@ export default function Header({ variant = 'light' }: HeaderProps) {
         </>
       )}
 
-      {/* Mobile Main Menu */}
       {mobileMenuOpen && !mobileSubMenuOpen && (
         <div className="md:hidden fixed inset-0 bg-surface-primary z-[40] animate-slide-up">
           <div className="flex flex-col h-full justify-center px-6 pb-8 pt-36">
@@ -704,7 +717,6 @@ export default function Header({ variant = 'light' }: HeaderProps) {
                 Resources
               </Link>
             </div>
-
             <div className="mt-auto flex flex-col gap-4 px-6">
               <Button variant="outlined" size="md" href="/login" fullWidth>
                 Log in
@@ -717,7 +729,6 @@ export default function Header({ variant = 'light' }: HeaderProps) {
         </div>
       )}
 
-      {/* Mobile Submenu */}
       {mobileSubMenuOpen && mobileMenuOpen && (
         <div className="md:hidden fixed inset-0 bg-surface-primary z-[60] overflow-y-auto animate-slide-left">
           <div className="sticky top-0 bg-surface-primary border-b border-border-secondary z-10">
@@ -741,7 +752,6 @@ export default function Header({ variant = 'light' }: HeaderProps) {
           </div>
 
           <div className="px-6 py-8 space-y-10">
-            {/* Payments */}
             <div>
               <h3 className="text-text-tertiary uppercase text-xs font-semibold tracking-wider mb-3">
                 PAYMENTS
@@ -800,7 +810,6 @@ export default function Header({ variant = 'light' }: HeaderProps) {
               </div>
             </div>
 
-            {/* Banking */}
             <div>
               <h3 className="text-text-tertiary uppercase text-xs font-semibold tracking-wider mb-3">
                 BANKING
@@ -859,7 +868,6 @@ export default function Header({ variant = 'light' }: HeaderProps) {
               </div>
             </div>
 
-            {/* Financial Services */}
             <div>
               <h3 className="text-text-tertiary uppercase text-xs font-semibold tracking-wider mb-3">
                 FINANCIAL SERVICES
