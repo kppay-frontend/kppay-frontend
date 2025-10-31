@@ -25,11 +25,21 @@ export default function HeroSection() {
           (prevIndex) => (prevIndex + 1) % peopleImages.length
         );
         setIsTransitioning(false);
-      }, 500);
-    }, 3750);
+      }, 800);
+    }, 4000);
 
     return () => clearInterval(interval);
   }, [peopleImages.length]);
+
+  const getSlideDirection = (index: number) => {
+    const directions = [
+      'translate-x-full', // Slide from right
+      '-translate-x-full', // Slide from left
+      'translate-y-full', // Slide from bottom
+      'translate-x-full', // Slide from right again
+    ];
+    return directions[index % directions.length];
+  };
 
   return (
     <section className="relative -mt-24 overflow-hidden">
@@ -40,10 +50,12 @@ export default function HeroSection() {
           {peopleImages.map((image, index) => (
             <div
               key={index}
-              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+              className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
                 index === currentImageIndex && !isTransitioning
-                  ? 'opacity-100'
-                  : 'opacity-0'
+                  ? 'opacity-100 translate-x-0 translate-y-0 scale-100'
+                  : index === currentImageIndex && isTransitioning
+                  ? `opacity-0 ${getSlideDirection(index)} scale-95`
+                  : `opacity-0 ${getSlideDirection(index)} scale-95`
               }`}
             >
               <Image
