@@ -1,10 +1,13 @@
 // app/services/subscriptions/page.tsx
+// ============================================
 import React from 'react';
 import {
   ServiceHero,
   ServiceFeatures,
+  IntegrationSelector,
   images,
   type ServiceFeature,
+  type IntegrationOption,
 } from '@/types';
 import { RefreshCw, Target, Users, TrendingUp } from 'lucide-react';
 
@@ -56,6 +59,61 @@ export default function SubscriptionsPage() {
     },
   ];
 
+  const billingModelOptions: IntegrationOption[] = [
+    {
+      id: 'fixed-pricing',
+      icon: null,
+      title: 'Fixed Pricing',
+      description: 'Simple recurring payments with fixed amounts',
+      timeToIntegrate: '2.9% + 30¢',
+      complexity: 'PER SUCCESSFUL TRANSACTION',
+      features: [
+        'Monthly software subscriptions',
+        'Annual memberships',
+        'Service plans',
+      ],
+      ctaText: 'Learn More',
+      ctaHref: '/billing/fixed',
+    },
+    {
+      id: 'usage-based',
+      icon: null,
+      title: 'Usage-Based',
+      description: 'Charge customers based on their actual usage',
+      timeToIntegrate: '2.9% + 30¢',
+      complexity: 'PER SUCCESSFUL TRANSACTION',
+      features: ['API calls', 'Storage usage', 'Transaction volume'],
+      ctaText: 'Learn More',
+      ctaHref: '/billing/usage-based',
+    },
+    {
+      id: 'tiered-pricing',
+      icon: null,
+      title: 'Tiered Pricing',
+      description: 'Multiple pricing tiers with different feature sets',
+      timeToIntegrate: '2.9% + 30¢',
+      complexity: 'PER SUCCESSFUL TRANSACTION',
+      features: [
+        'Monthly software subscriptions',
+        'Annual memberships',
+        'Service plans',
+      ],
+      ctaText: 'Learn More',
+      ctaHref: '/billing/tiered',
+    },
+    {
+      id: 'hybrid-models',
+      icon: null,
+      title: 'Hybrid Models',
+      description: 'Combine fixed and usage-based pricing',
+      timeToIntegrate: '2.9% + 30¢',
+      complexity: 'PER SUCCESSFUL TRANSACTION',
+      features: ['Base fee + overages', 'Seat-based + usage', 'Credits system'],
+      ctaText: 'Learn More',
+      ctaHref: '/billing/hybrid',
+    },
+  ];
+
   return (
     <main>
       <ServiceHero
@@ -81,6 +139,11 @@ export default function SubscriptionsPage() {
           listItem: 'text-white',
         }}
         boxOpacity={10}
+      />
+
+      <IntegrationSelector
+        heading="Flexible Billing Models"
+        options={billingModelOptions}
       />
     </main>
   );

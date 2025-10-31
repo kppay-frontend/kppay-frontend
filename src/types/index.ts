@@ -31,6 +31,13 @@ export { default as FAQSection } from '@/components/sections/shared/FAQSection';
 export { default as FeatureCard } from '@/components/sections/shared/FeatureCard';
 export { default as FeaturedResources } from '@/components/sections/shared/FeaturedResources';
 
+export { default as IntegrationSelector } from '@/components/sections/shared/IntegrationSelector';
+export { default as IntegrationCard } from '@/components/sections/shared/IntegrationCard';
+export { MobileAppCard } from '@/components/sections/shared/MobileAppCard';
+export { MobileAppSelector } from '@/components/sections/shared/MobileAppSelector';
+export { SDKCard } from '@/components/sections/shared/SDKCard';
+export { SDKSelector } from '@/components/sections/shared/SDKSelector';
+
 // AboutUs Page Components
 export { default as AboutHeroSection } from '@/components/sections/AboutUsPage/AboutHeroSection';
 export { default as DiscoverSection } from '@/components/sections/AboutUsPage/DiscoverSection';
@@ -159,4 +166,72 @@ export interface ServicePageData {
   hero: ServiceHeroData;
   features?: ServiceFeaturesData;
   loanCards?: LoanCardsData;
+}
+
+// ============================================
+// Integration Selector Types
+// ============================================
+export interface IntegrationOption {
+  id: string;
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  timeToIntegrate: string;
+  complexity: string;
+  features: string[];
+  ctaText?: string;
+  ctaHref?: string;
+  onCtaClick?: () => void;
+}
+
+export interface IntegrationSelectorProps {
+  heading?: string;
+  options: IntegrationOption[];
+  className?: string;
+}
+
+export interface IntegrationCardProps {
+  option: IntegrationOption;
+  className?: string;
+}
+
+// Mobile App Types
+export interface UseCaseTag {
+  label: string;
+}
+
+export interface MobileAppOption {
+  id: string;
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  useCases: UseCaseTag[];
+  features: string[];
+  ctaText?: string;
+  ctaHref?: string;
+  onCtaClick?: () => void;
+}
+
+export interface MobileAppSelectorProps {
+  heading?: string;
+  options: MobileAppOption[];
+  className?: string;
+}
+
+// SDK Types
+export interface SDKOption {
+  id: string;
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  features: string[];
+  ctaText?: string;
+  ctaHref?: string;
+  onCtaClick?: () => void;
+}
+
+export interface SDKSelectorProps {
+  heading?: string;
+  options: SDKOption[];
+  className?: string;
 }

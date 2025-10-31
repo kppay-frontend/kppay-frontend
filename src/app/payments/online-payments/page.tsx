@@ -3,10 +3,19 @@ import React from 'react';
 import {
   ServiceHero,
   ServiceFeatures,
+  IntegrationSelector,
   images,
   type ServiceFeature,
+  type IntegrationOption,
 } from '@/types';
-import { CreditCard, Smartphone, Globe, Lock } from 'lucide-react';
+import {
+  CreditCard,
+  Smartphone,
+  Globe,
+  Lock,
+  ShoppingCart,
+  Code,
+} from 'lucide-react';
 
 export default function OnlinePaymentsPage() {
   const features: ServiceFeature[] = [
@@ -47,14 +56,65 @@ export default function OnlinePaymentsPage() {
     },
     {
       icon: <Lock className="w-10 h-10" />,
-      title: 'Digital Wallets',
-      description: 'Integrate popular digital payment methods.',
+      title: 'Security & Compliance', // Changed this title
+      description: 'Enterprise-grade security for your payments.', // Changed this description
       items: [
         'Samsung Pay',
         'Alipay & WeChat Pay',
         'Paypal Integration',
         'Fraud Protection',
       ],
+    },
+  ];
+
+  const integrationOptions: IntegrationOption[] = [
+    {
+      id: 'hosted-checkout',
+      icon: <ShoppingCart size={40} strokeWidth={1.5} />,
+      title: 'Hosted Checkout',
+      description: 'Pre-built, customizable payment pages',
+      timeToIntegrate: '15 minutes',
+      complexity: 'Advanced',
+      features: [
+        'No coding Required',
+        'Mobile Optimized',
+        'PCI Compliant',
+        'Multi-Language Support',
+      ],
+      ctaText: 'Learn More',
+      ctaHref: '/integrations/hosted-checkout',
+    },
+    {
+      id: 'payment-elements',
+      icon: <CreditCard size={40} strokeWidth={1.5} />,
+      title: 'Payment Elements',
+      description: 'Embeddable UI components for custom integration',
+      timeToIntegrate: '1-2 hours',
+      complexity: 'Intermediate',
+      features: [
+        'No coding Required',
+        'Mobile Optimized',
+        'PCI Compliant',
+        'Multi-Language Support',
+      ],
+      ctaText: 'Learn More',
+      ctaHref: '/integrations/payment-elements',
+    },
+    {
+      id: 'payment-apis',
+      icon: <Code size={40} strokeWidth={1.5} />,
+      title: 'Payment APIs',
+      description: 'Full control with our REST APIs',
+      timeToIntegrate: '1-2 Days',
+      complexity: 'Advanced',
+      features: [
+        'No coding Required',
+        'Mobile Optimized',
+        'PCI Compliant',
+        'Multi-Language Support',
+      ],
+      ctaText: 'Learn More',
+      ctaHref: '/integrations/payment-apis',
     },
   ];
 
@@ -83,6 +143,11 @@ export default function OnlinePaymentsPage() {
           listItem: 'text-white',
         }}
         boxOpacity={10}
+      />
+
+      <IntegrationSelector
+        heading="Choose Your Integration"
+        options={integrationOptions}
       />
     </main>
   );

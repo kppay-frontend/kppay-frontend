@@ -1,12 +1,27 @@
 // app/services/mobile-payments/page.tsx
+// ============================================
 import React from 'react';
 import {
   ServiceHero,
   ServiceFeatures,
+  MobileAppSelector,
+  SDKSelector,
   images,
   type ServiceFeature,
+  type MobileAppOption,
+  type SDKOption,
 } from '@/types';
-import { Smartphone, QrCode, Wallet, Code } from 'lucide-react';
+import {
+  Smartphone,
+  QrCode,
+  Wallet,
+  Code,
+  ShoppingCart,
+  HandCoins,
+  PlayCircle,
+  Apple,
+  Bot,
+} from 'lucide-react';
 
 export default function MobilePaymentsPage() {
   const features: ServiceFeature[] = [
@@ -51,6 +66,102 @@ export default function MobilePaymentsPage() {
     },
   ];
 
+  const mobileAppOptions: MobileAppOption[] = [
+    {
+      id: 'ecommerce-apps',
+      icon: <ShoppingCart size={40} strokeWidth={1.5} />,
+      title: 'E-commerce Apps',
+      description: 'Perfect for retail and marketplace mobile applications',
+      useCases: [
+        { label: 'Online Stores' },
+        { label: 'Marketplaces' },
+        { label: 'Fashion Apps' },
+        { label: 'Electronics' },
+      ],
+      features: [
+        'Product Catalogs',
+        'Shopping Carts',
+        'Order Management',
+        'Customer Profiles',
+      ],
+      ctaText: 'Learn More',
+      ctaHref: '/solutions/ecommerce',
+    },
+    {
+      id: 'on-demand-services',
+      icon: <HandCoins size={40} strokeWidth={1.5} />,
+      title: 'On-Demand Services',
+      description: 'Ideal for service-based and gig economy applications',
+      useCases: [
+        { label: 'Food Delivery' },
+        { label: 'Ride Sharing' },
+        { label: 'Home Services' },
+        { label: 'Healthcare' },
+      ],
+      features: [
+        'Real-time bookings',
+        'Service tracking',
+        'Rating systems',
+        'Multi-party payments',
+      ],
+      ctaText: 'Learn More',
+      ctaHref: '/solutions/on-demand',
+    },
+    {
+      id: 'subscription-apps',
+      icon: <PlayCircle size={40} strokeWidth={1.5} />,
+      title: 'Subscription Apps',
+      description: 'Streamlined billing for subscription and membership apps',
+      useCases: [
+        { label: 'Media Streaming' },
+        { label: 'SaaS Tools' },
+        { label: 'Fitness Apps' },
+        { label: 'News Platforms' },
+      ],
+      features: [
+        'Recurring billing',
+        'Trial periods',
+        'Plan management',
+        'Usage tracking',
+      ],
+      ctaText: 'Learn More',
+      ctaHref: '/solutions/subscriptions',
+    },
+  ];
+
+  const sdkOptions: SDKOption[] = [
+    {
+      id: 'ios-sdk',
+      icon: <Apple size={40} strokeWidth={1.5} />,
+      title: 'iOS SDK',
+      description:
+        'Native Swift SDK with full iOS integration and Apple Pay support',
+      features: [
+        'Swift Package Manager',
+        'Apple Pay Integration',
+        'Touch/Face ID Support',
+        'iOS 12+ Compatibility',
+      ],
+      ctaText: 'Download iOS SDK',
+      ctaHref: '/sdk/ios',
+    },
+    {
+      id: 'android-sdk',
+      icon: <Bot size={40} strokeWidth={1.5} />,
+      title: 'Android SDK',
+      description:
+        'Native Kotlin SDK with Google Pay and modern Android features',
+      features: [
+        'Gradle Dependency',
+        'Google Pay Integration',
+        'Biometric Authentication',
+        'Android 6+ Support',
+      ],
+      ctaText: 'Download Android SDK',
+      ctaHref: '/sdk/android',
+    },
+  ];
+
   return (
     <main>
       <ServiceHero
@@ -77,6 +188,13 @@ export default function MobilePaymentsPage() {
         }}
         boxOpacity={10}
       />
+
+      <MobileAppSelector
+        heading="Perfect For Any Mobile App"
+        options={mobileAppOptions}
+      />
+
+      <SDKSelector heading="Native Mobile SDKs" options={sdkOptions} />
     </main>
   );
 }
